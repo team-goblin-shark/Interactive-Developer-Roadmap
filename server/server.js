@@ -1,6 +1,7 @@
 const express = require('express');
 const pg = require('pg');
 const { getData } = require('./dbController.js');
+const bodyParser = require('body-parser');
 
 const app = express();
 const port = 3000;
@@ -19,7 +20,9 @@ const client = new pg.Client(conString);
 //     console.log(result.rows[0].theTime);
 //   });
 // });
+app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(bodyParser.json());
 
 app.get('/', (req, res) => res.send('Hello World!'));
 
