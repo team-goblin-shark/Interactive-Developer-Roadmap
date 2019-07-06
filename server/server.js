@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const path = require('path');
 const { getData, getCategory, fakeData } = require('./dbController.js');
+
 
 const app = express();
 const port = 3000;
@@ -13,8 +15,10 @@ app.get('/api/resources/:id', getData);
 
 app.get('/api/category', getCategory);
 
-app.get('/api/resources/:id', getData);
-
-app.get('/api/category', getCategory);
+// app.get('/fakeData', fakeData);
+app.use('/dist', express.static('dist'));
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../index.html'));
+});
 
 app.listen(port, () => console.log(`listening on port ${port}!`));
