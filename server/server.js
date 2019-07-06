@@ -23,6 +23,6 @@ const client = new pg.Client(conString);
 
 app.get('/', (req, res) => res.send('Hello World!'));
 
-app.get('/resources', getData);
+app.get('/api', getData);
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
