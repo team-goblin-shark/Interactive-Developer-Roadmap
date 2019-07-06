@@ -7,10 +7,18 @@ const client = new pg.Client(conString);
 const dbController = {
   getData: (req, res) => {
     const { id } = req.params;
-    let queryString = 'SELECT categories.category, resources.categoryid, resources.resourceid, resources.resource FROM resources LEFT JOIN categories ON categories.categoryid = resources.categoryid';
-    queryString = !id ? queryString : `${queryString} WHERE resources.categoryid = ${id}`;
+    const queryString = `SELECT categories.category, resources.resourceid, resources.resource FROM resources LEFT JOIN categories ON categories.categoryid = resources.categoryid WHERE resources.categoryId = ${id}`;
     client.connect();
     client.query(queryString, (err, result) => {
+      if (err) res.status(err);
+      res.send(result.rows);
+      // client.end();
+    });
+  },
+  getCategory: (req, res) => {
+    const queryIdString = 'SELECT * FROM categories';
+    client.connect();
+    client.query(queryIdString, (err, result) => {
       if (err) res.status(err);
       res.send(result.rows);
       // client.end();
