@@ -1,6 +1,8 @@
+// imported Postges module
 const pg = require('pg');
-
+// url for where the database exists on Elephant QL
 const conString = 'postgres://kupqjigy:vzZUKkBtNXGMFp-r8jpmUdRp7L1_JJtY@raja.db.elephantsql.com:5432/kupqjigy';
+
 const client = new pg.Client(conString);
 
 const dbController = {
