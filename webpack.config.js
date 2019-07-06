@@ -33,7 +33,7 @@ module.exports = env => ({
     compress: true,
     port: 8080,
     proxy: {
-      '/api/': {
+      '/api': {
         target: 'http://localhost:3000/',
         secure: false,
       },
