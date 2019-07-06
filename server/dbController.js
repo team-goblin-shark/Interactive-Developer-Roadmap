@@ -6,10 +6,12 @@ const client = new pg.Client(conString);
 
 const dbController = {
   getData: (req, res) => {
-    const queryString = 'SELECT categories.category, resources.categoryid, resources.resourceid, resources.resource FROM resources LEFT JOIN categories ON categories.categoryid = resources.categoryid;';
+    const { id } = req.params;
+    let queryString = 'SELECT categories.category, resources.categoryid, resources.resourceid, resources.resource FROM resources LEFT JOIN categories ON categories.categoryid = resources.categoryid';
+    queryString = !id ? queryString : `${queryString} WHERE resources.categoryid = ${id}`;
     client.connect();
     client.query(queryString, (err, result) => {
-      if (err) throw err;
+      if (err) res.status(err);
       res.send(result.rows);
       // client.end();
     });

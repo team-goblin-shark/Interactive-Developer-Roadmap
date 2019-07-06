@@ -15,6 +15,6 @@ app.use(bodyParser.json());
 
 app.get('/api', getData);
 
-
+app.get('/api/resource/:id', getData);
 
 app.listen(port, () => console.log(`listening on port ${port}!`));
