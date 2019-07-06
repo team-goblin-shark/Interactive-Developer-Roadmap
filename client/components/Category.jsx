@@ -20,6 +20,7 @@ export default class Category extends Component {
         //we use the .setState to update a piece of state
         //we use the 'bang' operator to on the buttonClicked property value to toggle
         this.setState({buttonClicked: !this.state.buttonClicked})
+
         //make a fetch request to our API
         fetch(`/api/resources/${this.props.id}`)
             .then(response => response.json())
@@ -35,6 +36,7 @@ export default class Category extends Component {
         const updatedResources = resources.map(resource => {
             return <p key={`${resource.resourceid}${this.props.id}`}>{resource.resource}</p>;
         });
+
         //Make sure that there is a parent element to return children elements
         //here we use conditional rendering to dynamically display resources
         return (

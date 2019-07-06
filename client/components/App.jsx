@@ -4,6 +4,7 @@ import Category from './Category';
 export default class App extends Component {
   constructor(props){
     super(props),
+
     this.state = {categories: []}
   }
 
@@ -15,6 +16,7 @@ export default class App extends Component {
       .then(response => response.json())
       .then(data => this.setState({categories: data}))
       .catch(err => console.log(err))
+
   }
 
   
@@ -23,6 +25,7 @@ export default class App extends Component {
     //we will create a react component for each element in the categories array
     const {categories} = this.state;
     const categoryComponents = categories.map(category => {
+
       return <Category key={`catid_${category.categoryid}`} categoryName={category.category} id={category.categoryid}/>
     })
     return (
