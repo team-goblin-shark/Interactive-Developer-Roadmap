@@ -23,13 +23,13 @@ export default class Category extends Component {
     }
 
     render (){
-        const {buttonClicked} = this.state;
+        const {buttonClicked, resources} = this.state;
         //Make sure that there is a parent element to return children elements
         //here we use conditional rendering to dynamically display resources
         return (
             <div>
-                <button onClick={this.clickHandler}>JavaScript</button>
-                {buttonClicked ? 'Button Clicked is True' : 'Button Clicked is False'}
+                <button onClick={this.clickHandler}>{this.props.categoryName}</button>
+                {buttonClicked ?  resources : ''}
             </div>
         )
     }
