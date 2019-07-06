@@ -1,6 +1,6 @@
 const pg = require('pg');
+const conString = require('./server_settings/elephantLogin.js');
 
-const conString = 'postgres://kupqjigy:vzZUKkBtNXGMFp-r8jpmUdRp7L1_JJtY@raja.db.elephantsql.com:5432/kupqjigy';
 const client = new pg.Client(conString);
 
 const dbController = {
