@@ -10,10 +10,27 @@ export default class Category extends Component {
             resources: ['www.youtube.com'],
             buttonClicked: false
         }
+        this.clickHandler = this.clickHandler.bind(this);
     }
+
+    //create a method to handle button click
+    //it will modify 'buttonClicked' property in our state component
+    //event handler takes in event object produced by browser
+    clickHandler (event){
+        //we use the .setState to update a piece of state
+        //we use the 'bang' operator to on the buttonClicked property value to toggle
+        this.setState({buttonClicked: !this.state.buttonClicked})
+    }
+
     render (){
+        const {buttonClicked} = this.state;
+        //Make sure that there is a parent element to return children elements
+        //here we use conditional rendering to dynamically display resources
         return (
-            <button>JavaScript</button>
+            <div>
+                <button onClick={this.clickHandler}>JavaScript</button>
+                {buttonClicked ? 'Button Clicked is True' : 'Button Clicked is False'}
+            </div>
         )
     }
 }
