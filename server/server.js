@@ -9,10 +9,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(bodyParser.json());
 
-// app.get('/', (req, res) => res.send('Hello World!'));
+app.get('/api/resources/:id', getData);
 
-// app.get('/fakeData', fakeData);
-// console.log(process.env);
+app.get('/api/category', getCategory);
+
 app.get('/api/resources/:id', getData);
 
 app.get('/api/category', getCategory);
