@@ -1,5 +1,6 @@
 const express = require('express');
 const pg = require('pg');
+const { getData } = require('./dbController.js');
 
 const app = express();
 const port = 3000;
@@ -16,11 +17,12 @@ client.connect((err) => {
       return console.error('error running query', err);
     }
     console.log(result.rows[0].theTime);
-    client.end();
   });
 });
 
 
 app.get('/', (req, res) => res.send('Hello World!'));
+
+app.get('/resources', getData);
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
