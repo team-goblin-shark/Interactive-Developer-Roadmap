@@ -4,10 +4,12 @@ import Category from './Category';
 export default class App extends Component {
   constructor(props){
     super(props),
-    this.state = {
-      categories: ['HTML', 'CSS', 'JavaScript']
-    }
+    this.state = {categories: []}
   }
+
+  //use componentDidMount life cycle method
+  //use a fetch request to the '/api' route
+  //take that data and update the state to include it
 
   
   render() {
