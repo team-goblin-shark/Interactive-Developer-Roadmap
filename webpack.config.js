@@ -31,7 +31,7 @@ module.exports = env => ({
   devServer: {
     publicPath: path.resolve(__dirname, '/dist/'),
     compress: true,
-    port: 8080,
+    port: 8090,
     proxy: {
       '/api': {
         target: 'http://localhost:3000/',

@@ -15,11 +15,11 @@ export default class App extends Component {
     //we will create a react component for each element in the categories array
     const {categories} = this.state;
     const categoryComponents = categories.map(category => {
-      return <Category categoryName={category}/>
+      return <Category categoryName={category} />
     })
     return (
       <div>
-        <h1>Hello eric</h1>
+        <h1>Goblin Sharks!!!</h1>
         {categoryComponents}
       </div>
     )
