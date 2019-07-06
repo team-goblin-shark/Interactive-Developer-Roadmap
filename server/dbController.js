@@ -1,7 +1,6 @@
 // imported Postges module
 const pg = require('pg');
-// url for where the database exists on Elephant QL
-const conString = 'postgres://kupqjigy:vzZUKkBtNXGMFp-r8jpmUdRp7L1_JJtY@raja.db.elephantsql.com:5432/kupqjigy';
+const conString = require('./server_settings/elephantLogin.js');
 
 const client = new pg.Client(conString);
 
@@ -11,7 +10,7 @@ const dbController = {
     client.connect();
     client.query(queryString, (err, result) => {
       if (err) throw err;
-      console.log(result.rows);
+      res.send(result.rows);
       client.end();
     });
   },

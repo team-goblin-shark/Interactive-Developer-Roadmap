@@ -1,6 +1,6 @@
 const express = require('express');
-const pg = require('pg');
 const { getData } = require('./dbController.js');
+const bodyParser = require('body-parser');
 
 const app = express();
 const port = 3000;
