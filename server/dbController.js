@@ -1,5 +1,6 @@
 const faker = require('faker');
 const pg = require('pg');
+
 const conString = require('./server_settings/elephantLogin.js');
 
 const client = new pg.Client(conString);
@@ -10,16 +11,19 @@ const dbController = {
     const queryString = `SELECT categories.category, resources.resourceid, resources.resource FROM resources LEFT JOIN categories ON categories.categoryid = resources.categoryid WHERE resources.categoryId = ${id}`;
     client.connect();
     client.query(queryString, (err, result) => {
-      if (err) res.status(err);
+      if (err) return res.send(err);
       res.send(result.rows);
       // client.end();
     });
   },
   getCategory: (req, res) => {
     const queryIdString = 'SELECT * FROM categories';
-    client.connect();
+    client.connect((err, db) => {
+      if (err) console.error(err);
+      console.log(db);
+    });
     client.query(queryIdString, (err, result) => {
-      if (err) res.status(err);
+      if (err) return res.send(err);
       res.send(result.rows);
       // client.end();
     });
@@ -30,7 +34,7 @@ const dbController = {
       const text = 'INSERT INTO resources (categoryID, resource) VALUES ($1, $2)';
       const values = [String((i % 3) + 1), faker.internet.url()];
       client.query(text, values, (err, result) => {
-        if (err) throw err;
+        if (err) return res.send(err);
         console.log(result.rows);
       });
     }
