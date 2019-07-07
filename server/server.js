@@ -2,11 +2,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const { getData, getCategory, fakeData } = require('./dbController.js');
-
+const pool = require('./database.js');
 
 const app = express();
 const port = 3000;
 
+pool.connect();
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(bodyParser.json());
