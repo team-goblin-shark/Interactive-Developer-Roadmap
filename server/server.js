@@ -9,10 +9,12 @@ const {
 } = require('./dbController.js');
 const pool = require('./database.js');
 const oAuthController = require('./oAuthController');
+
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const { cookieSecret } = require('./server_settings/oAuthSettings');
 // const { getData, getCategory, fakeData } = require('./dbController.js');
+
 
 const app = express();
 const port = 3000;
@@ -20,6 +22,7 @@ pool.connect();
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(bodyParser.json());
+
 
 app.use(cookieParser());
 
@@ -36,8 +39,6 @@ app.use(
 
 // app.get('/api/resources/:id', getData);
 
-// app.get('/api/category', getCategory);
-// app.get('/api/resources/:id', getData);
 app.get('/api/category', getCategory);
 
 app.get('/api/resources/:id', getData);

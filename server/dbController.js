@@ -45,7 +45,7 @@ const dbController = {
     const values = [resourceid, useremail, upvote];
     client.query(text, values, (err, result) => {
       if (err) return res.send(err);
-      // console.log(result.rows);
+      console.log(result.rows);
       res.send(result.rows);
     });
   },
