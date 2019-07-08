@@ -2,7 +2,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const {
-  getData, getCategory, fakeData, tmpSomething,
+  getData,
+  getCategory,
+  // fakeData,
+  submitVote,
 } = require('./dbController.js');
 const pool = require('./database.js');
 
@@ -23,5 +26,7 @@ app.use('/dist', express.static('dist'));
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../index.html'));
 });
+
+app.post('/api/vote/', submitVote);
 
 app.listen(port, () => console.log(`listening on port ${port}!`));

@@ -7,29 +7,30 @@ const App = () => {
   const [categories, setCategories] = useState([]);
   useEffect(() => {
     fetch('/api/category')
-    .then(response => response.json())
-    .then(data => setCategories(data))
-    .catch(err => console.log(err))
+      .then(response => response.json())
+      .then(data => setCategories(data))
+      .catch(err => console.log(err))
   });
   //we will map over the categories array in the state object
   //we will create a react component for each element in the categories array
+
   const categoryComponents = categories.map(category => {
-    return <Category key={`catid_${category.categoryid}`} categoryName={category.category} id={category.categoryid}/>
+    return <Category key={`catid_${category.categoryid}`} categoryName={category.category} id={category.categoryid} />
   })
   return (
     <div>
-        <h1>Goblin Sharks!!!</h1>
-        {categoryComponents}
-      </div>
-    )
-  };
-  
-  export default App;
-  
+      <h1>Goblin Sharks!!!</h1>
+      {categoryComponents}
+    </div>
+  )
+};
+
+export default App;
+
   // export default class App extends Component {
   //   constructor(props){
   //     super(props),
-  
+
   //     this.state = {categories: []}
   //   }
   //use componentDidMount life cycle method
@@ -43,7 +44,7 @@ const App = () => {
 
 //   }
 
-  
+
 //   render() {
 //     //we will map over the categories array in the state object
 //     //we will create a react component for each element in the categories array

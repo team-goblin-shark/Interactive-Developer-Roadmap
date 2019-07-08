@@ -38,8 +38,20 @@ const dbController = {
       // client.end();
     });
   },
+
+  submitVote: (req, res) => {
+    const { resourceid, useremail, upvote } = req.body;
+    const text = 'INSERT INTO votes (resourceid, useremail, upvote) VALUES ($1, $2, $3) ON CONFLICT (resourceid, useremail) DO UPDATE  SET upvote = $3 RETURNING *';
+    const values = [resourceid, useremail, upvote];
+    client.query(text, values, (err, result) => {
+      if (err) return res.send(err);
+      console.log(result.rows);
+      res.send(result.rows);
+    });
+  },
+
+
   fakeData: (req, res) => {
-    console.log('Hiii!');
     // for (let i = 0; i < 45; i += 1) {
     //   const text = 'INSERT INTO resources (categoryid, link, author, iscommunity) VALUES ($1, $2, $3, $4)';
     //   const values = [String((i % 3) + 1), faker.internet.url(), faker.name.findName(), (!!Math.floor(Math.random() * 2))];
