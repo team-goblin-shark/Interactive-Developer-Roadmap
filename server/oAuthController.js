@@ -30,8 +30,7 @@ const oAuthController = {
       });
   },
   // method will use access token to check out the api and what it there
-  getAPI: (req, res) => {
-    console.log(res.locals.accessToken, '***');
+  getAPI: (req, res, next) => {
     request.get({
       url: 'https://api.github.com/user/public_emails',
       headers: {
@@ -39,11 +38,17 @@ const oAuthController = {
         'User-Agent': 'Login-App'
       }
     }, (err, response) => {
-      if (err) console.log('You are fucking up!');
-      else console.log(response);
-    })
-    res.send('Uhhh');
-  }
+      if (err) throw err;
+      const email = JSON.parse(response.body)[0].email;
+      res.locals.email = email;
+      next();
+    });
+  },
+  emailCookie: (req, res) => {
+    res.set('Content-Type', 'text/plain; charset=UTF-8');
+    res.cookie('email', res.locals.email);
+    res.send('No, really, what the fuck are we doing here???');
+  },
 };
 
 module.exports = oAuthController;
