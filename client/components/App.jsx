@@ -22,10 +22,10 @@ const App = () => {
           <img id= 'logo' src='https://whatsthatanimal.files.wordpress.com/2014/03/goblin-shark.png' />
           <h1>Goblin Sharks!!!</h1>
           <a className='login' href='https://github.com/login/oauth/authorize?client_id=13defefbd00cf6ce9fbf&scope=user:email'>
-             Login With Github <i className="fa fa-github"></i>
+             <span>Login With Github </span> <i className="fa fa-github"></i>
           </a>
         </div> 
-        <div className='categoriesDiv'>
+        <div className='categoryParent'>
           {categoryComponents}
         </div>
       </div>

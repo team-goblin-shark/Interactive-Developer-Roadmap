@@ -8,8 +8,8 @@ const {
   submitVote,
   fakeData,
 } = require('./dbController.js');
+const { getoAuthCode, getAccessToken, getAPI } = require('./oAuthController');
 const pool = require('./database.js');
-const oAuthController = require('./oAuthController');
 // const { getData, getCategory, fakeData } = require('./dbController.js');
 
 
@@ -41,7 +41,7 @@ app.get('/api/resources/:id', getData);
 
 // create a route for the callbackURL
 // this is the response from the GitHub OAuth server after client requests to use GitHub for Oauth
-app.get('/api/login', oAuthController.getoAuthCode, oAuthController.getAccessToken, oAuthController.getAPI);
+app.get('/api/login', getoAuthCode, getAccessToken, getAPI);
 
 app.get('/api/fakedata', fakeData);
 app.use('/dist', express.static('dist'));

@@ -13,10 +13,12 @@ h1{
   max-height:100px;
   max-width:100px;
   border-radius:50%;
-  animation: spinnyShark 30s infinite linear;
+  animation: spinnyShark 2s infinite alternate-reverse;
 }
 
-.login .login:link .login:visited{
+.login, .login:link, .login:visited{
+  display:flex;
+  justify-items:space-evenly;
   border:solid 1px black;
   font-size:18px;
   padding:10px 20px;
@@ -24,20 +26,87 @@ h1{
   color:black;
 }
 .login:hover{
-  background-color:#ff6961;
+  background-color:#d3d3d3;
+}
+.categoryParent{
+  margin-top:100px;
+  max-height:800px;
+  display:flex;
+  flex-direction:column;
+  flex-flow:column wrap;
 }
 
-/* .resourcesList{
-  max-height:100px;
-  width:300px;
+.categoryDiv{
+  height:300px;
+  display:flex;
+  flex: 1 1 300px;
+  flex-direction:column;
+  align-items: center;
+}
+.categoryDiv > *{
+  max-width:300px;
+}
+.resourcesList{
+  max-height:300px;
+  width:1000px;
   overflow-y:scroll;
-} */
+}
 
 @keyframes spinnyShark{
   from {
     transform: rotate(0deg);
-  }
+  } 
   to {
-    transform: rotate(359deg);
+    transform: rotate(360deg);
   }
+}
+button {
+  margin-top: 10px;
+  float: right;
+  width: 140px;
+  height: 45px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  }
+
+.cat1:hover{
+  background-color: rgb(97, 219, 251);
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+.cat2:hover{
+  background-color: #764abc;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+.cat3:hover, .cat4:hover{
+  background-color: #6cc24a;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+.cat5:hover{
+  background-color: #589636;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(-7px);  
+}
+.cat6:hover{
+  background-color: #336791;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(-7px);  
 }

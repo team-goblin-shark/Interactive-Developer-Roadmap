@@ -8,7 +8,6 @@ const client = require('./database.js');
 const dbController = {
   getData: (req, res) => {
     const { id } = req.params;
-    console.log(id);
     const queryString = `
     SELECT  a.link,
             a.resourceid,
@@ -23,6 +22,7 @@ const dbController = {
       ORDER BY score DESC;`;
     client.query(queryString, (err, result) => {
       if (err) return res.send(err);
+      // console.log(result.rows);
       return res.send(result.rows);
     });
   },

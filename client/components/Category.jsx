@@ -27,8 +27,8 @@ const Category = (props) => {
         return <Resource id={resource.resourceid} link={resource.link} key={`${resource.resourceid}${props.id}`} sumdownvote={resource.sumdownvote} sumupvote={resource.sumupvote} score={resource.score} />;
     });
     return (
-        <div className='categories'>
-            <button onClick={clickHandler}>{props.categoryName}</button>
+        <div className='categoryDiv' >
+            <button className = {`cat${props.id}`} onClick={clickHandler}>{props.categoryName}</button>
             <div className='resourcesList'>
                 {buttonClicked ?  updatedResources : ''}
             </div>
