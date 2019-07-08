@@ -22,6 +22,7 @@ const Category = (props) => {
             .catch(err => console.log(err));
     };
 
+
     const updatedResources = resources.map(resource => {
         return <Resource id={resource.resourceid} link={resource.link} key={`${resource.resourceid}${props.id}`} sumdownvote={resource.sumdownvote} sumupvote={resource.sumupvote} score={resource.score} />;
     });

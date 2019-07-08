@@ -2,7 +2,6 @@ import React, { Component, useState, useEffect } from 'react';
 //no parens needed around directory
 import Category from './Category';
 
-
 const App = () => {
   const [categories, setCategories] = useState([]);
   useEffect(() => {
@@ -21,6 +20,7 @@ const App = () => {
     <div>
       <h1>Goblin Sharks!!!</h1>
       {categoryComponents}
+      <a href='https://github.com/login/oauth/authorize?client_id=13defefbd00cf6ce9fbf&scope=user:email'>Will this shit work???</a>
     </div>
   )
 };
