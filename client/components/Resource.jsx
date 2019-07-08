@@ -72,25 +72,25 @@ export default class Resource extends Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this)
-    this.state = { voted: null }
+    this.state = { upvoted: false, downvoted: false }
   }
 
   handleClick(e) {
-    if (this.state.voted === e.target.innerText) {
-      this.setState({ voted: null })
-    } else {
-      this.setState({ voted: e.target.innerText })
+    if (e.target.innerText === '++') {
+      this.setState({ upvoted: !this.state.upvoted, downvoted: false })
+    }
+    if (e.target.innerText === '--') {
+      this.setState({ downvoted: !this.state.downvoted, upvoted: false })
     }
   }
 
 
   render() {
-
     return (
       <div>
         {this.props.link}
-        <a href='#' onClick={this.handleClick} > ++ </a> {this.state.voted === '++' ? Number(this.props.sumupvote) + 1 : Number(this.props.sumupvote)}
-        <a href='#' onClick={this.handleClick} > -- </a> {this.state.voted === '--' ? Number(this.props.sumupvote) + 1 : Number(this.props.sumdownvote)}
+        <a href='#' onClick={this.handleClick} >++</a> {Number(this.props.sumupvote) + Number(this.state.upvoted)}
+        <a href='#' onClick={this.handleClick} >--</a> {Number(this.props.sumdownvote) + Number(this.state.downvoted)}
       </div>
     )
   }
