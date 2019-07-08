@@ -18,8 +18,14 @@ const App = () => {
   })
   return (
     <div>
-        <h1>Goblin Sharks!!!</h1>
-        {categoryComponents}
+        <div id='navbar'>
+          <img id= 'logo' src='https://whatsthatanimal.files.wordpress.com/2014/03/goblin-shark.png' />
+          <h1>Goblin Sharks!!!</h1>
+          <a className='login' href='#'> Login With Github <i className="fa fa-github"></i></a>
+        </div>
+        <div className='categoriesDiv'>
+          {categoryComponents}
+        </div>
       </div>
     )
   };

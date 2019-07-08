@@ -1,5 +1,5 @@
 import React, {Component, useState, useEffect } from 'react';
-
+import Resource from './Resource.jsx';
 //What are we creating?
     //A component that has a button element
     //When that button is clicked, it will reveal resources associated with that category
@@ -19,12 +19,14 @@ const Category = (props) => {
             .catch(err => console.log(err));
     };
     const updatedResources = resources.map(resource => {
-        return <p key={`${resource.resourceid}${props.id}`}>{resource.resource}</p>;
+        return <Resource key={`${resource.resourceid}${props.id}`} id={resource.resourceid} link={resource.link} sumupvote={resource.sumupvote} sumdownvote={resource.sumdownvote} score={resource.score} />;
     });
     return (
-        <div>
+        <div className='categories'>
             <button onClick={clickHandler}>{props.categoryName}</button>
-            {buttonClicked ?  updatedResources : ''}
+            <div className='resourcesList'>
+                {buttonClicked ?  updatedResources : ''}
+            </div>
         </div>
     )
 }
