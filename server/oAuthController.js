@@ -2,6 +2,7 @@
 const request = require('request');
 const qs = require('querystring');
 const jwt = require('jsonwebtoken');
+const { clientID, clientSecret, cookieSecret } = require('./server_settings/oAuthSettings');
 
 const oAuthController = {
   // method for getting authorization code from GitHub oAuth server
@@ -19,8 +20,8 @@ const oAuthController = {
     // Import request module to make HTTP request from server
     request.post({
       url: 'https://github.com/login/oauth/access_token?' + qs.stringify({
-        client_id: '13defefbd00cf6ce9fbf',
-        client_secret: '723abe897e915346e2832e9ac3c0a47e25f583a4',
+        client_id: clientID,
+        client_secret: clientSecret,
         code: res.locals.code
       })
     }, (err, result, body) => {
@@ -46,7 +47,7 @@ const oAuthController = {
     });
   },
   jwtCookie: (req, res) => {
-    const newJWT = jwt.sign({ exp: Math.floor(Date.now() / 1000) + (60 * 30), email: res.locals.email }, 'secret');
+    const newJWT = jwt.sign({ exp: Math.floor(Date.now() / 1000) + (60 * 30), email: res.locals.email }, cookieSecret);
     res.cookie('jwtToken', newJWT);
     res.redirect('/');
   }

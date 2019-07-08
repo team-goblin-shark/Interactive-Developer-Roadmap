@@ -9,9 +9,9 @@ const {
 } = require('./dbController.js');
 const pool = require('./database.js');
 const oAuthController = require('./oAuthController');
-const jwtController = require('./jwtController');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
+const { cookieSecret } = require('./server_settings/oAuthSettings');
 // const { getData, getCategory, fakeData } = require('./dbController.js');
 
 const app = express();
@@ -55,7 +55,7 @@ app.get('/', (req, res) => {
 
 app.post('/api/vote/', (req, res, next) => {
   const { jwtToken } = req.cookies;
-  jwt.verify(jwtToken, 'secret', (err, result) => {
+  jwt.verify(jwtToken, cookieSecret, (err, result) => {
     if (err) throw err;
     else res.locals.verifiedEmail = result.email;
   });
