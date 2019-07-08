@@ -40,7 +40,8 @@ const dbController = {
   },
 
   submitVote: (req, res) => {
-    const { resourceid, useremail, upvote } = req.body;
+    const useremail = res.locals.verifiedEmail;
+    const { resourceid, upvote } = req.body;
     const text = 'INSERT INTO votes (resourceid, useremail, upvote) VALUES ($1, $2, $3) ON CONFLICT (resourceid, useremail) DO UPDATE  SET upvote = $3 RETURNING *';
     const values = [resourceid, useremail, upvote];
     client.query(text, values, (err, result) => {
