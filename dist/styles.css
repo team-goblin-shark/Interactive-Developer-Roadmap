@@ -11,7 +11,10 @@
 }
 
 h1{
+  text-align:center;
+  font-size:300px;
   display:inline;
+  animation:fadein 7s;
 }
 #logo{
   max-height:100px;
@@ -77,9 +80,6 @@ h1{
 }
 .adding{
   padding-inline-end:20px;
-}
-.things{
-
 }
 @keyframes spinnyShark{
   from {
@@ -160,3 +160,17 @@ h1{
   color: #fff;
   transform: translateY(-7px);  
 }
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+/* @keyframes bouncy{
+   0%{top:0em}
+   40%{top:0em}
+   43%{top:-0.9em}
+   46%{top:0em}
+   48%{top:-0.4em}
+   50%{top:0em}
+   100%{top:0em;}
+
+} */
