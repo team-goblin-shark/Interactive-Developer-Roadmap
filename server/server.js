@@ -17,7 +17,9 @@ app.use(
   session({
     secret: 'banana-hammock',
     cookie: { maxAge: 60000 },
+    // resave forces session to be saved back to the session store
     resave: false,
+    // saveUninitialized forces session that is 'uninitialized' to be saved to the store
     saveUninitialized: false
   }),
 );
