@@ -79,10 +79,18 @@ export default class Resource extends Component {
 
   render() {
     return (
-      <div>
-        {this.props.link}
-        <a href='#' onClick={this.handleClick} >++</a> {Number(this.props.sumupvote) + Number(this.state.upvoted)}
-        <a href='#' onClick={this.handleClick} >--</a> {Number(this.props.sumdownvote) + Number(this.state.downvoted)}
+      <div className='resourceDiv'>
+        <div className='resourceLinks'>{this.props.link}</div>
+        <div className='mathing'>
+          <div className='adding'>
+            <a className='things' href='#' onClick={this.handleClick} >++</a> 
+            {Number(this.props.sumupvote) + Number(this.state.upvoted)}
+          </div>
+          <div className='subtracting'>
+            <a className='things' href='#' onClick={this.handleClick} >--</a> 
+            {Number(this.props.sumdownvote) + Number(this.state.downvoted)}
+          </div>
+        </div>
       </div>
     )
   }

@@ -1,6 +1,7 @@
 import React, { Component, useState, useEffect } from 'react';
 //no parens needed around directory
 import Category from './Category';
+import AddResource from './AddResource';
 
 const App = () => {
   const [categories, setCategories] = useState([]);
@@ -16,17 +17,26 @@ const App = () => {
   const categoryComponents = categories.map(category => {
     return <Category key={`catid_${category.categoryid}`} categoryName={category.category} id={category.categoryid} />
   })
+
+  // const categoryIDs = [];
+  // const categoryLabels = [];
+
+
   return (
     <div>
         <div id='navbar'>
           <img id= 'logo' src='https://whatsthatanimal.files.wordpress.com/2014/03/goblin-shark.png' />
           <h1>Goblin Sharks!!!</h1>
           <a className='login' href='https://github.com/login/oauth/authorize?client_id=13defefbd00cf6ce9fbf&scope=user:email'>
-             <span>Login With Github </span> <i className="fa fa-github"></i>
+             <span id='GitInHere'>Login With Github </span> <i className="fa fa-github"></i>
           </a>
         </div> 
         <div className='categoryParent'>
           {categoryComponents}
+        </div>
+        <div id='addResource'>
+          <h2>Submit Resources Here</h2>
+          <AddResource categories={categories} />
         </div>
       </div>
   )
@@ -68,3 +78,4 @@ export default App;
 //     )
 //   }
 // }
+

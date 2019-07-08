@@ -1,9 +1,13 @@
+*{
+  font-family:Helvetica;
+}
 #navbar{
   display:flex;
   flex-direction:row;
   justify-content:space-between;
   align-content:center;
   align-items:center;
+  padding-inline-end:40px;
 }
 
 h1{
@@ -13,17 +17,23 @@ h1{
   max-height:100px;
   max-width:100px;
   border-radius:50%;
-  animation: spinnyShark 2s infinite alternate-reverse;
+  animation: spinnyShark 10s infinite linear;
+}
+
+#GitInHere{
+  padding-inline-end: 10px;
 }
 
 .login, .login:link, .login:visited{
   display:flex;
-  justify-items:space-evenly;
+  justify-items:space-between;
   border:solid 1px black;
   font-size:18px;
   padding:10px 20px;
   border-radius:5px;
   color:black;
+  text-decoration:none;
+  
 }
 .login:hover{
   background-color:#d3d3d3;
@@ -43,15 +53,34 @@ h1{
   flex-direction:column;
   align-items: center;
 }
-.categoryDiv > *{
-  max-width:300px;
-}
 .resourcesList{
+  font-size:18px;
   max-height:300px;
-  width:1000px;
+  width:500px;
   overflow-y:scroll;
 }
 
+.resourceDiv{
+  display: flex;
+  justify-content: center;
+  flex-wrap:nowrap;
+}
+.resourceLink{
+  flex:3;
+  text-align:left;
+}
+.mathing{
+  display:flex;
+  flex:1;
+  justify-content:flex-end;
+  padding-inline-end: 20px;
+}
+.adding{
+  padding-inline-end:20px;
+}
+.things{
+
+}
 @keyframes spinnyShark{
   from {
     transform: rotate(0deg);
@@ -60,7 +89,28 @@ h1{
     transform: rotate(360deg);
   }
 }
-button {
+#addResource{
+  text-align:center;
+}
+#selecting,#submitBtn,input{
+  width: 140px;
+  height: 45px;
+}
+#selecting, #submitBtn{
+  font-family: 'Roboto', sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
+.cat1,.cat2,.cat3,.cat4,.cat5,.cat6 {
   margin-top: 10px;
   float: right;
   width: 140px;
@@ -78,35 +128,35 @@ button {
   transition: all 0.3s ease 0s;
   cursor: pointer;
   outline: none;
-  }
+}
 
 .cat1:hover{
   background-color: rgb(97, 219, 251);
-  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  box-shadow: 0px 15px 20px rgba(97, 220, 251, 0.4);
   color: #fff;
   transform: translateY(-7px);
 }
 .cat2:hover{
-  background-color: #764abc;
-  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  background-color:rgb(118, 74, 188);
+  box-shadow: 0px 15px 20px rgba(118, 74, 188, 0.4);
   color: #fff;
   transform: translateY(-7px);
 }
 .cat3:hover, .cat4:hover{
-  background-color: #6cc24a;
-  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  background-color: rgb(108, 194, 74);
+  box-shadow: 0px 15px 20px rgba(108, 194, 74, 0.4);
   color: #fff;
   transform: translateY(-7px);
 }
 .cat5:hover{
-  background-color: #589636;
-  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  background-color: rgb(88, 150, 54);
+  box-shadow: 0px 15px 20px rgba(88, 150, 54, 0.4);
   color: #fff;
   transform: translateY(-7px);  
 }
 .cat6:hover{
-  background-color: #336791;
-  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  background-color: rgb(51, 103, 145);
+  box-shadow: 0px 15px 20px rgba(51, 103, 145, 0.4);
   color: #fff;
   transform: translateY(-7px);  
 }
