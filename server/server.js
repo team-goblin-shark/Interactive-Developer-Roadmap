@@ -5,12 +5,14 @@ const oAuthController = require('./oAuthController');
 const session = require('express-session');
 // const { getData, getCategory, fakeData } = require('./dbController.js');
 
+
 const app = express();
 const port = 3000;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(bodyParser.json());
+
 
 app.use(
   session({
@@ -26,9 +28,11 @@ app.use(
 // app.get('/api/resources/:id', getData);
 
 // app.get('/api/category', getCategory);
+
 app.get('/api/resources/:id', getData);
 
 app.get('/api/resources/:id');
+
 
 app.get('/api/category');
 

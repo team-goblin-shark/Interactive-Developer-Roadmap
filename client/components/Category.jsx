@@ -18,7 +18,7 @@ const Category = (props) => {
             .then(data => setResources(data))
             .catch(err => console.log(err));
     };
-    
+  
     const updatedResources = resources.map(resource => {
         return <p key={`${resource.resourceid}${props.id}`}>{resource.resource}</p>;
     });

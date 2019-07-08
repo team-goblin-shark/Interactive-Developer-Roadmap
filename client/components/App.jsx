@@ -2,9 +2,6 @@ import React, { Component, useState, useEffect } from 'react';
 //no parens needed around directory
 import Category from './Category';
 
-  //we will need refactor the client_id provided in the url
-  //it's hard coded right now for testing of oAuth process
-
 const App = () => {
   const [categories, setCategories] = useState([]);
   useEffect(() => {
