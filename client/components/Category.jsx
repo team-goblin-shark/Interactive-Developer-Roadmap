@@ -1,11 +1,13 @@
-import React, {Component, useState, useEffect } from 'react';
-
+import React, { Component, useState, useEffect } from 'react';
+import Resource from './Resource.jsx'
 //What are we creating?
-    //A component that has a button element
-    //When that button is clicked, it will reveal resources associated with that category
+//A component that has a button element
+//When that button is clicked, it will reveal resources associated with that category
 const Category = (props) => {
     const [resources, setResources] = useState(['www.youtube.com']);
     const [buttonClicked, setButtonClicked] = useState(false);
+    const [buttonStatus, setButtonStatus] = useState(null);
+
     const clickHandler = (event) => {
         //we use the .setState to update a piece of state
         //we use the 'bang' operator to on the buttonClicked property value to toggle
@@ -18,13 +20,16 @@ const Category = (props) => {
             .then(data => setResources(data))
             .catch(err => console.log(err));
     };
+
+
+
     const updatedResources = resources.map(resource => {
-        return <p key={`${resource.resourceid}${props.id}`}>{resource.resource}</p>;
+        return <Resource key={`${resource.resourceid}${props.id}`} id={resource.resourceid} link={resource.link} sumupvote={resource.sumupvote} sumdownvote={resource.sumdownvote} score={resource.score} />;
     });
     return (
         <div>
             <button onClick={clickHandler}>{props.categoryName}</button>
-            {buttonClicked ?  updatedResources : ''}
+            {buttonClicked ? updatedResources : ''}
         </div>
     )
 }
