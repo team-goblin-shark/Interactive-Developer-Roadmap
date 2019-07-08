@@ -9,6 +9,10 @@ const {
 } = require('./dbController.js');
 const pool = require('./database.js');
 const oAuthController = require('./oAuthController');
+
+const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
+const { cookieSecret } = require('./server_settings/oAuthSettings');
 // const { getData, getCategory, fakeData } = require('./dbController.js');
 
 
@@ -19,6 +23,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(bodyParser.json());
 
+
+app.use(cookieParser());
 
 app.use(
   session({
@@ -40,7 +46,7 @@ app.get('/api/resources/:id', getData);
 
 // create a route for the callbackURL
 // this is the response from the GitHub OAuth server after client requests to use GitHub for Oauth
-app.get('/login/callback', oAuthController.getoAuthCode, oAuthController.getAccessToken, oAuthController.getAPI);
+app.get('/api/login', oAuthController.getoAuthCode, oAuthController.getAccessToken, oAuthController.getAPI, oAuthController.jwtCookie);
 
 // app.get('/fakeData', tmpSomething, fakeData);
 app.use('/dist', express.static('dist'));
@@ -48,6 +54,13 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../index.html'));
 });
 
-app.post('/api/vote/', submitVote);
+app.post('/api/vote/', (req, res, next) => {
+  const { jwtToken } = req.cookies;
+  jwt.verify(jwtToken, cookieSecret, (err, result) => {
+    if (err) throw err;
+    else res.locals.verifiedEmail = result.email;
+  });
+  next();
+}, submitVote);
 
 app.listen(port, () => console.log(`listening on port ${port}!`));

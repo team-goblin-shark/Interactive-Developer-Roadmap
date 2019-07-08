@@ -1,6 +1,8 @@
 // Create a middleware controller for OAuth
 const request = require('request');
 const qs = require('querystring');
+const jwt = require('jsonwebtoken');
+const { clientID, clientSecret, cookieSecret } = require('./server_settings/oAuthSettings');
 
 const oAuthController = {
   // method for getting authorization code from GitHub oAuth server
@@ -18,20 +20,19 @@ const oAuthController = {
     // Import request module to make HTTP request from server
     request.post({
       url: 'https://github.com/login/oauth/access_token?' + qs.stringify({
-        client_id: '13defefbd00cf6ce9fbf',
-        client_secret: '723abe897e915346e2832e9ac3c0a47e25f583a4',
+        client_id: clientID,
+        client_secret: clientSecret,
         code: res.locals.code
       })
     }, (err, result, body) => {
-        if (err) console.error(err);
-        // console.log(qs.parse(body), 'Eric!!!');
-        req.session.access_token = qs.parse(body).access_token;
-        next();
-      });
+      if (err) console.error(err);
+      // console.log(qs.parse(body), 'Eric!!!');
+      req.session.access_token = qs.parse(body).access_token;
+      next();
+    });
   },
   // method will use access token to check out the api and what it there
-  getAPI: (req, res) => {
-    console.log(res.locals.accessToken, '***');
+  getAPI: (req, res, next) => {
     request.get({
       url: 'https://api.github.com/user/public_emails',
       headers: {
@@ -39,10 +40,16 @@ const oAuthController = {
         'User-Agent': 'Login-App'
       }
     }, (err, response) => {
-      if (err) console.log('You are fucking up!');
-      else console.log(response);
-    })
-    res.send('Uhhh');
+      if (err) throw err;
+      const email = JSON.parse(response.body)[0].email;
+      res.locals.email = email;
+      next();
+    });
+  },
+  jwtCookie: (req, res) => {
+    const newJWT = jwt.sign({ exp: Math.floor(Date.now() / 1000) + (60 * 30), email: res.locals.email }, cookieSecret);
+    res.cookie('jwtToken', newJWT);
+    res.redirect('/');
   }
 };
 
