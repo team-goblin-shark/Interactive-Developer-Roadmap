@@ -1,16 +1,27 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-const oAuthController = require('./oAuthController');
 const session = require('express-session');
+const {
+  getData,
+  getCategory,
+  submitVote,
+} = require('./dbController.js');
+const pool = require('./database.js');
+const oAuthController = require('./oAuthController');
+const jwtController = require('./jwtController');
+const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
 // const { getData, getCategory, fakeData } = require('./dbController.js');
 
 const app = express();
 const port = 3000;
-
+pool.connect();
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(bodyParser.json());
+
+app.use(cookieParser());
 
 app.use(
   session({
@@ -19,7 +30,7 @@ app.use(
     // resave forces session to be saved back to the session store
     resave: false,
     // saveUninitialized forces session that is 'uninitialized' to be saved to the store
-    saveUninitialized: false
+    saveUninitialized: false,
   }),
 );
 
@@ -27,19 +38,28 @@ app.use(
 
 // app.get('/api/category', getCategory);
 // app.get('/api/resources/:id', getData);
+app.get('/api/category', getCategory);
 
-app.get('/api/resources/:id');
+app.get('/api/resources/:id', getData);
 
-app.get('/api/category');
 
 // create a route for the callbackURL
 // this is the response from the GitHub OAuth server after client requests to use GitHub for Oauth
-app.get('/api/login', oAuthController.getoAuthCode, oAuthController.getAccessToken, oAuthController.getAPI, oAuthController.emailCookie);
+app.get('/api/login', oAuthController.getoAuthCode, oAuthController.getAccessToken, oAuthController.getAPI, oAuthController.jwtCookie);
 
-// app.get('/fakeData', fakeData);
+// app.get('/fakeData', tmpSomething, fakeData);
 app.use('/dist', express.static('dist'));
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../index.html'));
 });
+
+app.post('/api/vote/', (req, res, next) => {
+  const { jwtToken } = req.cookies;
+  jwt.verify(jwtToken, 'secret', (err, result) => {
+    if (err) throw err;
+    else res.locals.verifiedEmail = result.email;
+  });
+  next();
+}, submitVote);
 
 app.listen(port, () => console.log(`listening on port ${port}!`));

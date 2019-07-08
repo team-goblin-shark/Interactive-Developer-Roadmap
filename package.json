@@ -21,9 +21,11 @@
   "homepage": "https://github.com/team-goblin-shark/scratch#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.4",
     "express": "^4.17.1",
     "express-session": "^1.16.2",
     "faker": "^4.1.0",
+    "jsonwebtoken": "^8.5.1",
     "pg": "^7.11.0",
     "qs-stringify": "^1.1.0",
     "querystring": "^0.2.0",

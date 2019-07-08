@@ -1,6 +1,7 @@
 // Create a middleware controller for OAuth
 const request = require('request');
 const qs = require('querystring');
+const jwt = require('jsonwebtoken');
 
 const oAuthController = {
   // method for getting authorization code from GitHub oAuth server
@@ -23,11 +24,11 @@ const oAuthController = {
         code: res.locals.code
       })
     }, (err, result, body) => {
-        if (err) console.error(err);
-        // console.log(qs.parse(body), 'Eric!!!');
-        req.session.access_token = qs.parse(body).access_token;
-        next();
-      });
+      if (err) console.error(err);
+      // console.log(qs.parse(body), 'Eric!!!');
+      req.session.access_token = qs.parse(body).access_token;
+      next();
+    });
   },
   // method will use access token to check out the api and what it there
   getAPI: (req, res, next) => {
@@ -44,11 +45,11 @@ const oAuthController = {
       next();
     });
   },
-  emailCookie: (req, res) => {
-    res.set('Content-Type', 'text/plain; charset=UTF-8');
-    res.cookie('email', res.locals.email);
-    res.send('No, really, what the fuck are we doing here???');
-  },
+  jwtCookie: (req, res) => {
+    const newJWT = jwt.sign({ exp: Math.floor(Date.now() / 1000) + (60 * 30), email: res.locals.email }, 'secret');
+    res.cookie('jwtToken', newJWT);
+    res.redirect('/');
+  }
 };
 
 module.exports = oAuthController;
