@@ -15,7 +15,7 @@ const dbController = {
             SUM(case when b.upvote = FALSE then 1 else 0 end) sumDownvote,
             SUM(case when b.upvote = TRUE then 1 else -0.5 end) score
     FROM    resources a
-            JOIN votes b
+            FULL JOIN votes b
                 ON a.resourceid = b.resourceid
             WHERE a.categoryid = ${id}
     GROUP   BY b.resourceid, a.link, a.resourceid
@@ -50,24 +50,40 @@ const dbController = {
     });
   },
 
+  submitResource: (req, res) => {
+    const { categoryid, link, author } = req.body;
+    console.log(categoryid, link, author);
+    const text = 'INSERT INTO resources (categoryid, link, author, iscommunity) VALUES ($1, $2, $3, $4) RETURNING *';
+    const values = [categoryid, link, author, true];
+    client.query(text, values, (err, result) => {
+      console.log(result.rows);
+      if (err) console.log('Error ', err);
+      res.status(200).send(result.rows);
+    });
+  },
+
 
   fakeData: (req, res) => {
-    // for (let i = 0; i < 45; i += 1) {
-    //   const text = 'INSERT INTO resources (categoryid, link, author, iscommunity) VALUES ($1, $2, $3, $4)';
-    //   const values = [String((i % 3) + 1), faker.internet.url(), faker.name.findName(), (!!Math.floor(Math.random() * 2))];
-    //   client.query(text, values, (err, result) => {
-    //     // if (err) return res.send(err);
-    //     console.log(result.rows);
-    //   });
-
-    for (let i = 0; i < 120; i += 1) {
-      const text = 'INSERT INTO votes (resourceid, useremail, upvote) VALUES ($1, $2, $3)';
-      const values = [(Math.floor(Math.random() * 44) + 1), faker.internet.email(), ((!!Math.floor(Math.random() * 2)))];
+    for (let i = 0; i < 45; i += 1) {
+      const text = 'INSERT INTO resources (categoryid, link, author, iscommunity) VALUES ($1, $2, $3, $4)';
+      const values = [String((i % 3) + 4), faker.internet.url(), faker.name.findName(), (!!Math.floor(Math.random() * 2))];
       client.query(text, values, (err, result) => {
-        if (err) return res.send(err);
-        console.log(result.rows);
+        console.log(result);
+
+
+        if (err) console.log('Error ', err);
+        // console.log(result.rows);
       });
     }
+
+    // for (let i = 0; i < 120; i += 1) {
+    //   const text = 'INSERT INTO votes (resourceid, useremail, upvote) VALUES ($1, $2, $3)';
+    //   const values = [(Math.floor(Math.random() * 44) + 44), faker.internet.email(), ((!!Math.floor(Math.random() * 2)))];
+    //   client.query(text, values, (err, result) => {
+    //     if (err) return res.send(err);
+    //     console.log(result.rows);
+    //   });
+    // }
 
     // client.end();
   },
