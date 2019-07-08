@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server/server.js",
-    "build": "webpack --env.NODE_ENV=production",
+    "build": "NODE_ENV=production webpack && npm start ",
     "dev": "webpack-dev-server --open --env.NODE_ENV=development & nodemon server/server.js"
   },
   "repository": {
@@ -22,10 +22,14 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
+    "express-session": "^1.16.2",
     "faker": "^4.1.0",
     "pg": "^7.11.0",
+    "qs-stringify": "^1.1.0",
+    "querystring": "^0.2.0",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "request": "^2.88.0"
   },
   "devDependencies": {
     "@babel/core": "^7.5.0",
