@@ -27,11 +27,11 @@ h1{
   background-color:#ff6961;
 }
 
-.resourcesList{
+/* .resourcesList{
   max-height:100px;
   width:300px;
   overflow-y:scroll;
-}
+} */
 
 @keyframes spinnyShark{
   from {

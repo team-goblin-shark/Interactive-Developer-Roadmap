@@ -1,12 +1,14 @@
 const faker = require('faker');
-// const pool = require('./database.js');
+// const pg = require('pg');
+const client = require('./database.js');
+// const conString = require('./server_settings/elephantLogin.js');
 
-
-
+// const client = new pg.Pool(conString);
 
 const dbController = {
   getData: (req, res) => {
     const { id } = req.params;
+    console.log(id);
     const queryString = `
     SELECT  a.link,
             a.resourceid,
@@ -14,45 +16,56 @@ const dbController = {
             SUM(case when b.upvote = FALSE then 1 else 0 end) sumDownvote,
             SUM(case when b.upvote = TRUE then 1 else -0.5 end) score
     FROM    resources a
-            JOIN votes b
+            FULL JOIN votes b
                 ON a.resourceid = b.resourceid
             WHERE a.categoryid = ${id}
     GROUP   BY b.resourceid, a.link, a.resourceid
       ORDER BY score DESC;`;
-    pool.query(queryString, (err, result) => {
+    client.query(queryString, (err, result) => {
       if (err) return res.send(err);
       return res.send(result.rows);
     });
   },
   getCategory: (req, res) => {
     const queryIdString = 'SELECT * FROM categories';
-    pool.query(queryIdString, (err, result) => {
-      if (err) return res.status(500).send(err);
-      return res.status(200).send(result.rows);
+    client.query(queryIdString, (err, result) => {
+      if (err) return res.send(err);
+      res.send(result.rows);
+      // client.end();
     });
   },
-  generateFakeResources: (req,res,next) => {
-    console.log('Hiii!');
-    for (let i = 0; i < 45; i += 1) {
-      const text = 'INSERT INTO resources (categoryid, link, author, iscommunity) VALUES ($1, $2, $3, $4)';
-      const values = [String((i % 3) + 4), faker.internet.url(), faker.name.findName(), (!!Math.floor(Math.random() * 2))];
-      pool.query(text, values, (err, result) => {
-        if (err) throw new Error(err);
-        console.log(result.rows);
-        return next();
-      });
-    }
+
+  submitVote: (req, res) => {
+    const { resourceid, useremail, upvote } = req.body;
+    const text = 'INSERT INTO votes (resourceid, useremail, upvote) VALUES ($1, $2, $3) ON CONFLICT (resourceid, useremail) DO UPDATE  SET upvote = $3 RETURNING *';
+    const values = [resourceid, useremail, upvote];
+    client.query(text, values, (err, result) => {
+      if (err) return res.send(err);
+      console.log(result.rows);
+      res.send(result.rows);
+    });
   },
-  
-  generateFakeVotes: () => {
-    for (let i = 0; i < 300; i += 1) {
+
+
+  fakeData: (req, res) => {
+    // for (let i = 0; i < 45; i += 1) {
+    //   const text = 'INSERT INTO resources (categoryid, link, author, iscommunity) VALUES ($1, $2, $3, $4)';
+    //   const values = [String((i % 3) + 1), faker.internet.url(), faker.name.findName(), (!!Math.floor(Math.random() * 2))];
+    //   client.query(text, values, (err, result) => {
+    //     // if (err) return res.send(err);
+    //     console.log(result.rows);
+    //   });
+
+    for (let i = 0; i < 120; i += 1) {
       const text = 'INSERT INTO votes (resourceid, useremail, upvote) VALUES ($1, $2, $3)';
-      const values = [(Math.floor(Math.random() * 90) + 1), faker.internet.email(), ((!!Math.floor(Math.random() * 2)))];
-      pool.query(text, values, (err, result) => {
-        if (err) throw new Error(err);
+      const values = [(Math.floor(Math.random() * 44) + 1), faker.internet.email(), ((!!Math.floor(Math.random() * 2)))];
+      client.query(text, values, (err, result) => {
+        if (err) return res.send(err);
         console.log(result.rows);
       });
     }
+
+    // client.end();
   },
 };
 
