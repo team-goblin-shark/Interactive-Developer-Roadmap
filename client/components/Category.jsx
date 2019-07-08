@@ -20,16 +20,18 @@ const Category = (props) => {
             //we will update our resources value stored in this.state
             .then(data => setResources(data))
             .catch(err => console.log(err));
-    };
+    }; 
 
 
     const updatedResources = resources.map(resource => {
         return <Resource id={resource.resourceid} link={resource.link} key={`${resource.resourceid}${props.id}`} sumdownvote={resource.sumdownvote} sumupvote={resource.sumupvote} score={resource.score} />;
     });
     return (
-        <div>
-            <button onClick={clickHandler}>{props.categoryName}</button>
-            {buttonClicked ? updatedResources : ''}
+        <div className='categoryDiv' >
+            <button className = {`cat${props.id}`} onClick={clickHandler}>{props.categoryName}</button>
+            <div className='resourcesList'>
+                {buttonClicked ?  updatedResources : ''}
+            </div>
         </div>
     )
 }

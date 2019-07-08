@@ -36,13 +36,13 @@ export default function AddResource(props) {
 
 
   return (
-    <div>
-      <select onChange={categoryChange}>
+    <div id='submitResourceDiv'>
+      <select id='selecting' onChange={categoryChange}>
         {options}
       </select>
-      <input type="text" defaultValue="Link" onChange={linkChange} />
-      <input type="text" defaultValue="Author" onChange={authorChange} />
-      <button onClick={clickHandler}> Submit! </button>
+      <input type="text" placeholder="Link" onChange={linkChange} />
+      <input type="text" placeholder="Author" onChange={authorChange} />
+      <button id='submitBtn' onClick={clickHandler}> Submit! </button>
     </div>
   )
 }

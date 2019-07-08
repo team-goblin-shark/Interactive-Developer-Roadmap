@@ -1,3 +1,43 @@
+// import React, { useState } from 'react'
+
+// const Resource = (props) => {
+//   const {sumupvote,sumdownvote} = props;
+//   const [upvote, setUpvote] = useState(false);
+//   const [downvote, setDownvote] = useState(false);
+//   // const [currentVote, setCurrentVote] = useState(null);
+
+//   const handleClick = (e) => {
+//     const choice = e.target.innerText;
+//     // let futureChange = currentVote === choice ? 'og' : choice;
+    
+//     if(choice==='++'){
+//       setUpvote(!upvote);
+//       setDownvote(false);
+//     } else if(choice==='--'){
+//       setDownvote(!downvote);
+//       setUpvote(false);
+//     }
+
+
+//     // setCurrentVote(futureChange);
+//     // console.log('after', currentVote, downvote, upvote);
+//   }
+//   // const newUpvote = currentVote === '++' ? upvote + 1 : upvote;
+//   // const newDownvote = currentVote === '--' ? downvote - 1 : downvote;
+//   // console.log('after', newUpvote, newDownvote);
+//   return (
+//     <div>
+//       {props.link}
+//       <a href='#' onClick={handleClick} > ++ </a> { Number(sumupvote) + Number(upvote)}
+//       <a href='#' onClick={handleClick} > -- </a> { Number(sumdownvote) - Number(downvote)}
+//     </div>
+//   )
+// }
+// export default Resource;
+
+//////////
+
+
 import React, { Component } from 'react';
 
 export default class Resource extends Component {
@@ -39,10 +79,18 @@ export default class Resource extends Component {
 
   render() {
     return (
-      <div>
-        {this.props.link}
-        <a href='#' onClick={this.handleClick} >++</a> {Number(this.props.sumupvote) + Number(this.state.upvoted)}
-        <a href='#' onClick={this.handleClick} >--</a> {Number(this.props.sumdownvote) + Number(this.state.downvoted)}
+      <div className='resourceDiv'>
+        <div className='resourceLinks'>{this.props.link}</div>
+        <div className='mathing'>
+          <div className='adding'>
+            <a className='things' href='#' onClick={this.handleClick} >++</a> 
+            {Number(this.props.sumupvote) + Number(this.state.upvoted)}
+          </div>
+          <div className='subtracting'>
+            <a className='things' href='#' onClick={this.handleClick} >--</a> 
+            {Number(this.props.sumdownvote) + Number(this.state.downvoted)}
+          </div>
+        </div>
       </div>
     )
   }

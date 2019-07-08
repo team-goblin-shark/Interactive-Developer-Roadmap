@@ -1,5 +1,5 @@
 const faker = require('faker');
-const pg = require('pg');
+// const pg = require('pg');
 const client = require('./database.js');
 // const conString = require('./server_settings/elephantLogin.js');
 
@@ -22,13 +22,9 @@ const dbController = {
       ORDER BY score DESC;`;
     client.query(queryString, (err, result) => {
       if (err) return res.send(err);
-      res.send(result.rows);
-      // client.end();
+      // console.log(result.rows);
+      return res.send(result.rows);
     });
-  },
-  tmpSomething: (req, res, next) => {
-    console.log('hi');
-    return next();
   },
   getCategory: (req, res) => {
     const queryIdString = 'SELECT * FROM categories';
