@@ -5,7 +5,6 @@ const oAuthController = require('./oAuthController');
 const session = require('express-session');
 // const { getData, getCategory, fakeData } = require('./dbController.js');
 
-
 const app = express();
 const port = 3000;
 
@@ -27,6 +26,7 @@ app.use(
 // app.get('/api/resources/:id', getData);
 
 // app.get('/api/category', getCategory);
+app.get('/api/resources/:id', getData);
 
 app.get('/api/resources/:id');
 
@@ -36,6 +36,7 @@ app.get('/api/category');
 // this is the response from the GitHub OAuth server after client requests to use GitHub for Oauth
 app.get('/login/callback', oAuthController.getoAuthCode, oAuthController.getAccessToken, oAuthController.getAPI);
 
+// app.get('/fakeData', fakeData);
 app.use('/dist', express.static('dist'));
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../index.html'));

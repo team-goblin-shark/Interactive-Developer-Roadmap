@@ -2,6 +2,8 @@ import React, { Component, useState, useEffect } from 'react';
 //no parens needed around directory
 import Category from './Category';
 
+  //we will need refactor the client_id provided in the url
+  //it's hard coded right now for testing of oAuth process
 
 const App = () => {
   const [categories, setCategories] = useState([]);
@@ -16,9 +18,6 @@ const App = () => {
   const categoryComponents = categories.map(category => {
     return <Category key={`catid_${category.categoryid}`} categoryName={category.category} id={category.categoryid}/>
   })
-
-  //we will need refactor the client_id provided in the url
-  //it's hard coded right now for testing of oAuth process
   return (
     <div>
         <h1>Goblin Sharks!!!</h1>
