@@ -1,15 +1,20 @@
 import React, { Component, useState, useEffect } from 'react';
+//Using React Hooks
 //no parens needed around directory
 import Category from './Category';
 import AddResource from './AddResource';
 
 const App = () => {
   const [categories, setCategories] = useState([]);
+  const [hasFetched, changeFetch] = useState(false)
   useEffect(() => {
-    fetch('/api/category')
-      .then(response => response.json())
-      .then(data => setCategories(data))
-      .catch(err => console.log(err))
+    if(!hasFetched){
+      fetch('/api/category')
+        .then(response => response.json())
+        .then(data => setCategories(data))
+        .catch(err => console.log(err))
+        changeFetch(true)
+    }
   });
   //we will map over the categories array in the state object
   //we will create a react component for each element in the categories array
