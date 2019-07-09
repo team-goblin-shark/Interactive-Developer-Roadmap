@@ -11,9 +11,15 @@ const {
   submitVote,
   submitResource,
 } = require('./dbController.js');
-const { getoAuthCode, getAccessToken, getAPI, jwtCookie} = require('./oAuthController');
+const {
+  getoAuthCode,
+  getAccessToken,
+  getAPI,
+  jwtCookie,
+  getLogin,
+} = require('./oAuthController');
 const pool = require('./database.js');
-const oAuthController = require('./oAuthController');
+// const oAuthController = require('./oAuthController');
 
 const { cookieSecret } = require('./server_settings/oAuthSettings');
 // const { getData, getCategory, fakeData } = require('./dbController.js');
@@ -25,8 +31,6 @@ const port = 3000;
 pool.connect();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
-
 app.use(cookieParser());
 
 app.use(
@@ -46,7 +50,7 @@ app.get('/api/category', getCategory);
 
 app.get('/api/resources/:id', getData);
 
-
+app.get('/api/checkToken', getLogin);
 // create a route for the callbackURL
 // this is the response from the GitHub OAuth server after client requests to use GitHub for Oauth
 app.get('/api/login', getoAuthCode, getAccessToken, getAPI, jwtCookie);

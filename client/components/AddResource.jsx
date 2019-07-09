@@ -36,7 +36,7 @@ export default function AddResource(props) {
 
 
   return (
-    <div id='submitResourceDiv'>
+    <div id='submitResourceDiv' >
       <select id='selecting' onChange={categoryChange}>
         {options}
       </select>

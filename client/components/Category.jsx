@@ -28,7 +28,7 @@ const Category = (props) => {
     });
     return (
         <div className='categoryDiv' >
-            <button className = {`cat${props.id}`} onClick={clickHandler}>{props.categoryName}</button>
+            <button className = {`catbtn cat${props.id}`} onClick={clickHandler}>{props.categoryName}</button>
             <div className='resourcesList'>
                 {buttonClicked ?  updatedResources : ''}
             </div>

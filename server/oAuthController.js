@@ -46,11 +46,20 @@ const oAuthController = {
       next();
     });
   },
+
   jwtCookie: (req, res) => {
     const newJWT = jwt.sign({ exp: Math.floor(Date.now() / 1000) + (60 * 30), email: res.locals.email }, cookieSecret);
     res.cookie('jwtToken', newJWT);
     res.redirect('/');
-  }
+  },
+
+  getLogin: (req, res) => {
+    console.log(req.cookies);
+    const { jwtToken } = req.cookies;
+    const token = jwtToken.split('.');
+    return jwtToken ? res.send('true') : res.send('false');
+  },
+
 };
 
 module.exports = oAuthController;
