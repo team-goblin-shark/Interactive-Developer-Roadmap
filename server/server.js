@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
-const pool = require('./database.js');
 const apiRouter = require('./routers/apiRouter.js');
 
 // const { getData, getCategory, fakeData } = require('./dbController.js');
@@ -11,7 +10,6 @@ const apiRouter = require('./routers/apiRouter.js');
 const app = express();
 const port = 3000;
 
-pool.connect();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 

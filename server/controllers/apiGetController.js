@@ -1,4 +1,4 @@
-const client = require('../database.js');
+const pool = require('../database.js');
 
 const apiGetController = {
   getData: (req, res) => {
@@ -15,7 +15,9 @@ const apiGetController = {
               WHERE a.categoryid = ${id}
       GROUP   BY b.resourceid, a.link, a.resourceid
         ORDER BY score DESC;`;
-    client.query(queryString, (err, result) => {
+    pool.connect();
+    pool.query(queryString, (err, result) => {
+      pool.end();
       if (err) return res.send(err);
       // console.log(result.rows);
       return res.send(result.rows);
@@ -23,22 +25,25 @@ const apiGetController = {
   },
   getCategory: (req, res) => {
     const queryIdString = 'SELECT * FROM categories';
-    client.query(queryIdString, (err, result) => {
+    pool.connect();
+    pool.query(queryIdString, (err, result) =>{
+      pool.end();
       if (err) return res.send(err);
       res.send(result.rows);
-      // client.end();
+      // pool.end();
     });
   },
   getFakeData: (req, res) => {
+    pool.connect();
     for (let i = 0; i < 45; i += 1) {
       const text = 'INSERT INTO resources (categoryid, link, author, iscommunity) VALUES ($1, $2, $3, $4)';
       const values = [String((i % 3) + 4), faker.internet.url(), faker.name.findName(), (!!Math.floor(Math.random() * 2))];
-      client.query(text, values, (err, result) => {
+      pool.query(text, values, (err, result) => {
+        pool.end();
         console.log(result);
-
-
         if (err) console.log('Error ', err);
-        // console.log(result.rows);
+
+
       });
     }
   },
