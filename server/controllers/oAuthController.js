@@ -19,11 +19,11 @@ const oAuthController = {
     // It will need to include the authorization code and the client secret and client include
     // Import request module to make HTTP request from server
     request.post({
-      url: 'https://github.com/login/oauth/access_token?' + qs.stringify({
+      url: `https://github.com/login/oauth/access_token?${  qs.stringify({
         client_id: clientID,
         client_secret: clientSecret,
-        code: res.locals.code
-      })
+        code: res.locals.code,
+      })}`,
     }, (err, result, body) => {
       if (err) console.error(err);
       // console.log(qs.parse(body), 'Eric!!!');
@@ -37,11 +37,11 @@ const oAuthController = {
       url: 'https://api.github.com/user/public_emails',
       headers: {
         Authorization: `token ${req.session.access_token}`,
-        'User-Agent': 'Login-App'
-      }
+        'User-Agent': 'Login-App',
+      },
     }, (err, response) => {
       if (err) throw err;
-      const email = JSON.parse(response.body)[0].email;
+      const {email} = JSON.parse(response.body)[0];
       res.locals.email = email;
       next();
     });
@@ -50,7 +50,7 @@ const oAuthController = {
     const newJWT = jwt.sign({ exp: Math.floor(Date.now() / 1000) + (60 * 30), email: res.locals.email }, cookieSecret);
     res.cookie('jwtToken', newJWT);
     res.redirect('/');
-  }
+  },
 };
 
 module.exports = oAuthController;
