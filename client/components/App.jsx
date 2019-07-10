@@ -1,23 +1,46 @@
 import React, { Component, useState, useEffect } from 'react';
+//Using React Hooks
 //no parens needed around directory
 import Category from './Category';
 import AddResource from './AddResource';
-
+//--------------------------------------------------------------------------------------------------
+/*This App constant is using React Hooks 
+-Initializing state with first two constants
+-The point of conditional use of hasFetched in useEffect is to make sure the fetch only occurs once.
+-useEffect has the same functionality as componentDidMount
+*/
+//--------------------------------------------------------------------------------------------------
 const App = () => {
   const [categories, setCategories] = useState([]);
+  const [hasFetched, changeFetch] = useState(false)
   useEffect(() => {
-    fetch('/api/category')
-      .then(response => response.json())
-      .then(data => setCategories(data))
-      .catch(err => console.log(err))
+    if(!hasFetched){
+      fetch('/api/category')
+        .then(response => response.json())
+        .then(data => setCategories(data))
+        .catch(err => console.log(err))
+        changeFetch(true)
+    }
   });
+
+
+
+  
+  //--------------------------------------------------------------------------------------------------
+/*-This fetch request is fetching from an endpoint that exists in our server.js file
+  - That endpoint is a get request that runs a method called "getCategory" located in the db controller
+*/
+  //--------------------------------------------------------------------------------------------------
   //we will map over the categories array in the state object
   //we will create a react component for each element in the categories array
 
   const categoryComponents = categories.map(category => {
     return <Category key={`catid_${category.categoryid}`} categoryName={category.category} id={category.categoryid} />
   })
-
+//--------------------------------------------------------------------------------------------------
+/* we pull out keys (categoryid  and category) from each category in the array and pass them as props to each newly made Category component 
+*/ 
+//--------------------------------------------------------------------------------------------------
   // const categoryIDs = [];
   // const categoryLabels = [];
 
@@ -32,6 +55,7 @@ const App = () => {
           </a>
         </div> 
         <div className='categoryParent'>
+        {/* //insert our array of Category components here */}
           {categoryComponents}
         </div>
         <div id='addResource'>

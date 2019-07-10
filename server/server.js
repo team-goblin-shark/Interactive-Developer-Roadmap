@@ -11,11 +11,11 @@ const {
   submitVote,
   submitResource,
 } = require('./dbController.js');
-const { getoAuthCode, getAccessToken, getAPI, jwtCookie} = require('./oAuthController');
+//const { getoAuthCode, getAccessToken, getAPI, jwtCookie} = require('./oAuthController');
 const pool = require('./database.js');
-const oAuthController = require('./oAuthController');
+//const oAuthController = require('./oAuthController');
 
-const { cookieSecret } = require('./server_settings/oAuthSettings');
+//const { cookieSecret } = require('./server_settings/oAuthSettings');
 // const { getData, getCategory, fakeData } = require('./dbController.js');
 
 
@@ -49,7 +49,7 @@ app.get('/api/resources/:id', getData);
 
 // create a route for the callbackURL
 // this is the response from the GitHub OAuth server after client requests to use GitHub for Oauth
-app.get('/api/login', getoAuthCode, getAccessToken, getAPI, jwtCookie);
+// app.get('/api/login', getoAuthCode, getAccessToken, getAPI, jwtCookie);
 
 app.get('/api/fakeData', fakeData);
 
@@ -58,16 +58,18 @@ app.use('/dist', express.static('dist'));
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../index.html'));
 });
-
-app.post('/api/vote/', (req, res, next) => {
-  const { jwtToken } = req.cookies;
-  jwt.verify(jwtToken, cookieSecret, (err, result) => {
-    if (err) throw err;
-    else res.locals.verifiedEmail = result.email;
-  });
-  next();
-}, submitVote);
-
+//--------------------------------------------------------------------------------------------------
+/*  Make a request to this enpoint and  verifies user with oauth. This way Users can only submit votes once */ 
+//--------------------------------------------------------------------------------------------------
+// app.post('/api/vote/', (req, res, next) => {
+//   const { jwtToken } = req.cookies;
+//   jwt.verify(jwtToken, cookieSecret, (err, result) => {
+//     if (err) throw err;
+//     else res.locals.verifiedEmail = result.email;
+//   });
+//   next();
+// }, submitVote);
+// remember to uncomment this when we use oauth
 app.post('/api/resource/', submitResource);
 
 app.listen(port, () => console.log(`listening on port ${port}!`));
