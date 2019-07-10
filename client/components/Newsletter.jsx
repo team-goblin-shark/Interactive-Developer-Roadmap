@@ -15,6 +15,9 @@ const Newsletter = () => {
     return (
         <form>
             <input type='text' placeholder='Email' name='mail' required></input>
+            <NewsletterButton onClick = {this.handleClick}>Sign Up</NewsletterButton>
         </form>
     )
 }
+
+export default Newsletter;
