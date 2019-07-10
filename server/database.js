@@ -1,11 +1,6 @@
-const { Pool } = require('pg');
 
-const pool = new Pool({
-  username: 'zepvalue',
-  host: 'localhost',
-  database: 'goblin-shark',
-  password: 'linux',
-  port: 5432,
-});
+const { Client } = require('pg');
+const conString = require('./server_settings/elephantLogin.js');
 
-module.exports = pool;
+module.exports = () => new Client(conString);
+

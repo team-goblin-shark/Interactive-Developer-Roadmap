@@ -1,4 +1,4 @@
-const client = require('../database.js');
+const clientMaker = require('../database.js');
 
 const apiGetController = {
   getData: (req, res) => {
@@ -15,32 +15,32 @@ const apiGetController = {
               WHERE a.categoryid = ${id}
       GROUP   BY b.resourceid, a.link, a.resourceid
         ORDER BY score DESC;`;
-    client.query(queryString, (err, result) => {
-      if (err) return res.send(err);
-      // console.log(result.rows);
-      return res.send(result.rows);
+    
+    const client = clientMaker();
+    client.connect(err=>{
+      // if(err) res.status(504).send('Internal error');
+      client.query(queryString, (err, result) => {
+        // if (err) return res.send(err);
+        // console.log(result.rows);
+        const results = result.rows;
+        console.log('getController => getData => client.query', results)
+        client.end();
+        return res.status(200).send(results);
+      });
     });
   },
   getCategory: (req, res) => {
     const queryIdString = 'SELECT * FROM categories';
-    client.query(queryIdString, (err, result) => {
-      if (err) return res.send(err);
-      res.send(result.rows);
-      // client.end();
-    });
-  },
-  getFakeData: (req, res) => {
-    for (let i = 0; i < 45; i += 1) {
-      const text = 'INSERT INTO resources (categoryid, link, author, iscommunity) VALUES ($1, $2, $3, $4)';
-      const values = [String((i % 3) + 4), faker.internet.url(), faker.name.findName(), (!!Math.floor(Math.random() * 2))];
-      client.query(text, values, (err, result) => {
-        console.log(result);
-
-
-        if (err) console.log('Error ', err);
-        // console.log(result.rows);
+    const client = clientMaker();
+    client.connect(err=>{
+      if(err) return res.status(504).send(err);
+      client.query(queryIdString, (err, result) => {
+        if(err) return res.status(504).send(err);
+        const results = result.rows;
+        client.end();
+        return res.status(200).send(results);
       });
-    }
+    });
   },
 };
 
