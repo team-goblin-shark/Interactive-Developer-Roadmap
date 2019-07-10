@@ -3,6 +3,7 @@ import React, { Component, useState, useEffect } from 'react';
 //no parens needed around directory
 import Category from './Category';
 import AddResource from './AddResource';
+import Newsletter from './Newsletter';
 //--------------------------------------------------------------------------------------------------
 /*This App constant is using React Hooks 
 -Initializing state with first two constants
@@ -48,8 +49,9 @@ const App = () => {
   return (
     <div>
         <div id='navbar'>
-          <img id= 'logo' src='https://whatsthatanimal.files.wordpress.com/2014/03/goblin-shark.png' />
-          <h1>Goblin Sharks!!!</h1>
+      
+          <h1>Dev Resources</h1>
+          <Newsletter/>
           <a className='login' href='https://github.com/login/oauth/authorize?client_id=13defefbd00cf6ce9fbf&scope=user:email'>
             <i className="fa fa-github fa-3x"></i>
           </a>
