@@ -28,7 +28,6 @@ const oAuthController = {
       if (err) console.error(err);
       // console.log(qs.parse(body), 'Eric!!!');
       req.session.access_token = qs.parse(body).access_token;
-      res.redirect('/main');
       next();
     });
   },
@@ -53,7 +52,7 @@ const oAuthController = {
       cookieSecret,
     );
     res.cookie('jwtToken', newJWT);
-    res.redirect('/');
+    res.redirect('/main');
   },
 };
 
