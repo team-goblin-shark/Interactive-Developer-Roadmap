@@ -2,7 +2,7 @@
 const request = require('request');
 const qs = require('querystring');
 const jwt = require('jsonwebtoken');
-const { clientID, clientSecret, cookieSecret } = require('./server_settings/oAuthSettings');
+const { clientID, clientSecret, cookieSecret } = require('./server_settings/oAuthSettings.js');
 
 const oAuthController = {
   // method for getting authorization code from GitHub oAuth server
@@ -11,10 +11,12 @@ const oAuthController = {
     // take code and put it into res.locals
     // this allows subsequent middlewares to have access to access to it
     res.locals.code = code;
+    console.log(res.locals.code);
     next();
   },
   // method for getting access token after we get authorization code
   getAccessToken: (req, res, next) => {
+    // console.log("got into getaccesstoken");
     // We will need to send a post request to the access token url
     // It will need to include the authorization code and the client secret and client include
     // Import request module to make HTTP request from server
@@ -26,7 +28,7 @@ const oAuthController = {
       })
     }, (err, result, body) => {
       if (err) console.error(err);
-      // console.log(qs.parse(body), 'Eric!!!');
+      console.log(qs.parse(body), 'Eric!!!');
       req.session.access_token = qs.parse(body).access_token;
       next();
     });

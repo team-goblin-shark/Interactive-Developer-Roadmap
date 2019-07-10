@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/team-goblin-shark/scratch.git"
+    "url": "git+https://github.com/camerawalrond/scratch.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/team-goblin-shark/scratch/issues"
+    "url": "https://github.com/camerawalrond/scratch/issues"
   },
-  "homepage": "https://github.com/team-goblin-shark/scratch#readme",
+  "homepage": "https://github.com/camerawalrond/scratch#readme",
   "dependencies": {
     "@sendgrid/mail": "^6.4.0",
     "body-parser": "^1.19.0",

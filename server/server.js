@@ -12,11 +12,11 @@ const {
   submitResource,
   getTopThree,
 } = require('./dbController.js');
-const { getoAuthCode, getAccessToken, getAPI, jwtCookie} = require('./oAuthController');
+const { getoAuthCode, getAccessToken, getAPI, jwtCookie } = require('./oAuthController');
 const pool = require('./database.js');
 // const oAuthController = require('./oAuthController');
 
-const { cookieSecret } = require('./server_settings/oAuthSettings');
+const { cookieSecret } = require('./server_settings/oAuthSettings.js');
 // const { getData, getCategory, fakeData } = require('./dbController.js');
 
 
