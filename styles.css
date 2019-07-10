@@ -1,3 +1,8 @@
+html{
+  display: flex;
+  padding: 20px;
+}
+
 *{
   font-family:Helvetica;
 }
@@ -11,17 +16,12 @@
 }
 
 h1{
-  text-align:center;
-  font-size:300px;
+  text-align:left;
+  font-size:50px;
   display:inline;
   animation:fadein 7s;
 }
-#logo{
-  max-height:100px;
-  max-width:100px;
-  border-radius:50%;
-  animation: spinnyShark 10s infinite linear;
-}
+
 
 #GitInHere{
   padding-inline-end: 10px;
@@ -43,30 +43,41 @@ h1{
 }
 .categoryParent{
   margin-top:100px;
-  max-height:800px;
-  display:flex;
-  flex-direction:column;
-  flex-flow:column wrap;
+  width: 1340px;
+  flex-direction:row;
+  border-style: solid;
+  /* flex-flow:column wrap; */
 }
 
 .categoryDiv{
+  border-style: solid;
   height:300px;
-  display:flex;
+  /* display:flex; */
   flex: 1 1 300px;
   flex-direction:column;
-  align-items: center;
+  align-items: left;
+  margin: 50px;
 }
 .resourcesList{
-  font-size:18px;
-  max-height:300px;
-  width:500px;
+  padding: 50px;
+  margin: 20px;
+  font-size:20px;
+  height:100px;
+  width: 1200px;
   overflow-y:scroll;
+  /* justify-content: left; */
+  
 }
 
 .resourceDiv{
-  display: flex;
-  justify-content: center;
+  margin: 20px;
+  border-style:solid;
+  /* display: flex; */
+  /* justify-content: left; */
   flex-wrap:nowrap;
+  width: 1100px;
+  padding: 10px;
+
 }
 .resourceLink{
   flex:3;
@@ -81,14 +92,7 @@ h1{
 .adding{
   padding-inline-end:20px;
 }
-@keyframes spinnyShark{
-  from {
-    transform: rotate(0deg);
-  } 
-  to {
-    transform: rotate(360deg);
-  }
-}
+
 #addResource{
   text-align:center;
 }
@@ -112,14 +116,14 @@ h1{
 }
 .cat1,.cat2,.cat3,.cat4,.cat5,.cat6 {
   margin-top: 10px;
-  float: right;
+  float: left;
   width: 140px;
   height: 45px;
   font-family: 'Roboto', sans-serif;
   font-size: 11px;
   text-transform: uppercase;
-  letter-spacing: 2.5px;
-  font-weight: 500;
+  letter-spacing: 5px;
+  font-weight: 700;
   color: #000;
   background-color: #fff;
   border: none;
@@ -131,26 +135,26 @@ h1{
 }
 
 .cat1:hover{
-  background-color: rgb(97, 219, 251);
-  box-shadow: 0px 15px 20px rgba(97, 220, 251, 0.4);
+  background-color: rgb(51, 103, 145);
+  box-shadow: 0px 15px 20px rgba(51, 103, 145, 0.4);
   color: #fff;
   transform: translateY(-7px);
 }
 .cat2:hover{
-  background-color:rgb(118, 74, 188);
-  box-shadow: 0px 15px 20px rgba(118, 74, 188, 0.4);
+  background-color: rgb(51, 103, 145);
+  box-shadow: 0px 15px 20px rgba(51, 103, 145, 0.4);
   color: #fff;
   transform: translateY(-7px);
 }
 .cat3:hover, .cat4:hover{
-  background-color: rgb(108, 194, 74);
-  box-shadow: 0px 15px 20px rgba(108, 194, 74, 0.4);
+  background-color: rgb(51, 103, 145);
+  box-shadow: 0px 15px 20px rgba(51, 103, 145, 0.4);
   color: #fff;
   transform: translateY(-7px);
 }
 .cat5:hover{
-  background-color: rgb(88, 150, 54);
-  box-shadow: 0px 15px 20px rgba(88, 150, 54, 0.4);
+  background-color: rgb(51, 103, 145);
+  box-shadow: 0px 15px 20px rgba(51, 103, 145, 0.4);
   color: #fff;
   transform: translateY(-7px);  
 }

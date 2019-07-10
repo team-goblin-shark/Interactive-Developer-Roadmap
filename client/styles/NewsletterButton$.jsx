@@ -1,4 +1,4 @@
-import styled from 'style-components';
+import styled from 'styled-components';
 
 const NewsletterButton = styled.button`
     width: 200px;
@@ -6,3 +6,5 @@ const NewsletterButton = styled.button`
     background: #000;
     color: #fff;
 `
+
+export default NewsletterButton;
