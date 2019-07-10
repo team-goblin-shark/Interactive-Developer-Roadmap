@@ -52,7 +52,7 @@ const App = () => {
       
           <h1>Dev Resources</h1>
           <Newsletter/>
-          <a className='login' href='https://github.com/login/oauth/authorize?client_id=13defefbd00cf6ce9fbf&scope=user:email'>
+          <a className='login' href='https://github.com/login/oauth/authorize?client_id=65531e05edf45df5b914&scope=user:email'>
             <i className="fa fa-github fa-3x"></i>
           </a>
         </div> 
