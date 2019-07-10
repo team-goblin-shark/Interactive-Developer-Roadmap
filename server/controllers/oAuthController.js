@@ -2,7 +2,7 @@
 const request = require('request');
 const qs = require('querystring');
 const jwt = require('jsonwebtoken');
-const { clientID, clientSecret, cookieSecret } = require('./server_settings/oAuthSettings');
+const { clientID, clientSecret, cookieSecret } = require('../server_settings/oAuthSettings');
 
 const oAuthController = {
   // method for getting authorization code from GitHub oAuth server
