@@ -1,10 +1,18 @@
-const { Pool } = require('pg');
+// // // for local database
+// const { Pool } = require('pg');
+
+// const pool = new Pool({
+//   user: 'node_admin',
+//   host: 'localhost',
+//   database: 'goblin_shark',
+//   password: 'node_password',
+//   port: 5432,
+// });
+
+// module.exports = pool;
+
+
+const { Client } = require('pg');
 const conString = require('./server_settings/elephantLogin.js');
 
-const pool = new Pool({
-  connectionString: conString,
-  idleTimeoutMillis: 30000,
-  connectionTimeoutMillis: 2000,
-});
-
-module.exports = pool;
+module.exports = () => new Client(conString);

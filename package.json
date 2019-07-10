@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server/server.js",
     "build": "NODE_ENV=production webpack && npm start ",
+    "config": "sh server/config/config.sh",
     "dev": "webpack-dev-server --open --env.NODE_ENV=development & nodemon server/server.js"
   },
   "repository": {
@@ -26,6 +27,7 @@
     "express-session": "^1.16.2",
     "faker": "^4.1.0",
     "jsonwebtoken": "^8.5.1",
+    "nodemon": "^1.19.1",
     "pg": "^7.11.0",
     "qs-stringify": "^1.1.0",
     "querystring": "^0.2.0",
