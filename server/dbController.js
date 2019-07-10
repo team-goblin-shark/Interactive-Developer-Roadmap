@@ -1,5 +1,8 @@
 const faker = require('faker');
 // const pg = require('pg');
+//--------------------------------------------------------------------------------------------------
+/*  The client is a bathtub. A pool is a pool. Only one client */ 
+//--------------------------------------------------------------------------------------------------
 const client = require('./database.js');
 // const conString = require('./server_settings/elephantLogin.js');
 
