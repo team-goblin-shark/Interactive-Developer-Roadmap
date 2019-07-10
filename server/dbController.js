@@ -61,12 +61,12 @@ const dbController = {
 
 
   fakeData: (req, res) => {
+    console.log('I AM GENRATING FAKE DATA');
     for (let i = 0; i < 45; i += 1) {
       const text = 'INSERT INTO resources (categoryid, link, author, iscommunity) VALUES ($1, $2, $3, $4)';
       const values = [String((i % 3) + 4), faker.internet.url(), faker.name.findName(), (!!Math.floor(Math.random() * 2))];
       client.query(text, values, (err, result) => {
         console.log(result);
-
 
         if (err) console.log('Error ', err);
         // console.log(result.rows);

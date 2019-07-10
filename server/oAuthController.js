@@ -41,16 +41,19 @@ const oAuthController = {
       }
     }, (err, response) => {
       if (err) throw err;
-      const email = JSON.parse(response.body)[0].email;
+      const { email } = JSON.parse(response.body)[0];
       res.locals.email = email;
       next();
     });
   },
   jwtCookie: (req, res) => {
-    const newJWT = jwt.sign({ exp: Math.floor(Date.now() / 1000) + (60 * 30), email: res.locals.email }, cookieSecret);
+    const newJWT = jwt.sign(
+      { exp: Math.floor(Date.now() / 1000) + (60 * 30), email: res.locals.email },
+      cookieSecret,
+    );
     res.cookie('jwtToken', newJWT);
     res.redirect('/');
-  }
+  },
 };
 
 module.exports = oAuthController;
