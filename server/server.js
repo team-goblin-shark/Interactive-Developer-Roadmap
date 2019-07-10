@@ -15,7 +15,7 @@ const {
   getAccessToken,
   getAPI,
   jwtCookie,
-} = require('./oAuthController');
+} = require('./controllers/oAuthController');
 const pool = require('./database.js');
 const apiRouter = require('./routers/apiRouter.js');
 

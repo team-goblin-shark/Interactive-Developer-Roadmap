@@ -1,6 +1,5 @@
 import React, { Component, useState, useEffect } from 'react';
 import Resource from './Resource.jsx';
-import ResourceHooks from './Resource_hooks'
 
 //What are we creating?
 //A component that has a button element
