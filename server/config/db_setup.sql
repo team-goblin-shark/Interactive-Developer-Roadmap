@@ -8,7 +8,7 @@ resourceid SERIAL PRIMARY KEY,
 link TEXT,
 author VARCHAR,
 iscommunity BOOLEAN,
-categoryid INTEGER REFERENCES categories(categoryid)
+categoryid INTEGER REFERENCES categories(categoryid) ON DELETE CASCADE;
 );
 
 CREATE EXTENSION pgcrypto;
