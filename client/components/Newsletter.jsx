@@ -18,3 +18,5 @@ const Newsletter = () => {
         </form>
     )
 }
+
+export default Newsletter;
