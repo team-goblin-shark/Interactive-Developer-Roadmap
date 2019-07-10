@@ -5,7 +5,7 @@ const apiPostController = {
   postVote: (req, res) => {
     const useremail = res.locals.verifiedEmail;
     const { resourceid, upvote } = req.body;
-    const text = 'INSERT INTO votes (resourceid, useremail, upvote) VALUES ($1, $2, $3) ON CONFLICT (resourceid, useremail) DO UPDATE  SET upvote = $3 RETURNING *';
+    const text = 'INSERT INTO votes (resourceid, useremail, upvote) VALUES ($1, CRYPT($2, gen_salt('bf')), $3) VALUES ($1, $2, $3) ON CONFLICT (resourceid, useremail = crypt($2,useremail)) DO UPDATE SET upvote = $3 RETURNING *';
     const values = [resourceid, useremail, upvote];
     const client = clientMaker();
     client.connect(err=>{
