@@ -1,4 +1,4 @@
-const pool = require('../database.js');
+const clientMaker = require('../database.js')
 
 
 const apiPostController = {
@@ -7,12 +7,15 @@ const apiPostController = {
     const { resourceid, upvote } = req.body;
     const text = 'INSERT INTO votes (resourceid, useremail, upvote) VALUES ($1, $2, $3) ON CONFLICT (resourceid, useremail) DO UPDATE  SET upvote = $3 RETURNING *';
     const values = [resourceid, useremail, upvote];
-    pool.connect();
-    pool.query(text, values, (err, result) => {
-      pool.end();
-      if (err) return res.send(err);
-      console.log(result.rows);
-      res.send(result.rows);
+    const client = clientMaker();
+    client.connect(err=>{
+      // if(err) res.status(504).send('Internal error');
+      client.query(text, values, (err, result) => {
+        if (err) return res.send(err);
+        console.log('postController => postVote => client.query',result.rows);
+        client.end();
+        return res.send(result.rows);
+      });
     });
   },
 
@@ -21,12 +24,14 @@ const apiPostController = {
     console.log(categoryid, link, author);
     const text = 'INSERT INTO resources (categoryid, link, author, iscommunity) VALUES ($1, $2, $3, $4) RETURNING *';
     const values = [categoryid, link, author, true];
-    pool.connect();
-    pool.query(text, values, (err, result) => {
-      pool.end();
-      console.log(result.rows);
-      if (err) console.log('Error ', err);
-      res.status(200).send(result.rows);
+    const client = clientMaker();
+    client.connect(err=>{
+      // if(err) res.status(504).send('Internal error');
+      client.query(text, values, (err, result) => {
+        if (err) console.log('Error ', err);
+        client.end();
+        return res.status(200).send(result.rows);
+      });
     });
   },
 };
