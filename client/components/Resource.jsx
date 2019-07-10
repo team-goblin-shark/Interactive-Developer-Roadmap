@@ -1,59 +1,24 @@
-// import React, { useState } from 'react'
-
-// const Resource = (props) => {
-//   const {sumupvote,sumdownvote} = props;
-//   const [upvote, setUpvote] = useState(false);
-//   const [downvote, setDownvote] = useState(false);
-//   // const [currentVote, setCurrentVote] = useState(null);
-
-//   const handleClick = (e) => {
-//     const choice = e.target.innerText;
-//     // let futureChange = currentVote === choice ? 'og' : choice;
-    
-//     if(choice==='++'){
-//       setUpvote(!upvote);
-//       setDownvote(false);
-//     } else if(choice==='--'){
-//       setDownvote(!downvote);
-//       setUpvote(false);
-//     }
-
-
-//     // setCurrentVote(futureChange);
-//     // console.log('after', currentVote, downvote, upvote);
-//   }
-//   // const newUpvote = currentVote === '++' ? upvote + 1 : upvote;
-//   // const newDownvote = currentVote === '--' ? downvote - 1 : downvote;
-//   // console.log('after', newUpvote, newDownvote);
-//   return (
-//     <div>
-//       {props.link}
-//       <a href='#' onClick={handleClick} > ++ </a> { Number(sumupvote) + Number(upvote)}
-//       <a href='#' onClick={handleClick} > -- </a> { Number(sumdownvote) - Number(downvote)}
-//     </div>
-//   )
-// }
-// export default Resource;
-
-//////////
-
-
 import React, { Component } from 'react';
 
 export default class Resource extends Component {
   constructor(props) {
     super(props);
-    this.handleClick = this.handleClick.bind(this)
     this.state = { upvoted: false, downvoted: false, lameEmail: 'lameEmail@gmail.com' }
+    this.handleClick = this.handleClick.bind(this)
   }
-
+//--------------------------------------------------------------------------------------------------
+/* -set state without hooks 
+  - The handleClick method is attatched to the upvot and down vote elements
+  -when we click on the upvote button, the state of upvoted will toggle between true and false with each click(to prevent user from upvoting twice/ and also preventthem from liking and disliking the same resource)
+*/
+//--------------------------------------------------------------------------------------------------
   handleClick(e) {
 
     if (e.target.innerText === '++') {
       this.setState({ upvoted: !this.state.upvoted, downvoted: false })
       const tempVal = !this.state.upvoted;
-      let bool = tempVal ? tempVal : null;
-      fetch('/api/vote', {
+      let bool = tempVal ? tempVal : null;//when a user logs in they can only have one vote
+      fetch('/api/vote', {//  possibly related to Oauth
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ resourceid: this.props.id, useremail: this.state.lameEmail, upvote: bool }),
@@ -74,7 +39,9 @@ export default class Resource extends Component {
         .catch(error => error);
     }
   }
-
+//--------------------------------------------------------------------------------------------------
+/*  MThe above method makes a request to this enpoint and  verifies user with oauth. This way Users can only submit votes once */ 
+//--------------------------------------------------------------------------------------------------
 
 
   render() {
