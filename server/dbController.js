@@ -72,7 +72,30 @@ const dbController = {
         // console.log(result.rows);
       });
     }
+  },
 
+  // 🔥🔥🔥🔥 GET TOP THREE FUNCTION HERE TO PULL TOP THREE FROM DB AND SEND IT TO ENDPOINT
+  getTopThree: (req, res) => {
+    const { id } = req.params;
+    const queryString = `
+    SELECT  a.link,
+            a.resourceid,
+            SUM(case when b.upvote = TRUE then 1 else 0 end) sumUpvote,
+            SUM(case when b.upvote = FALSE then 1 else 0 end) sumDownvote,
+            SUM(case when b.upvote = TRUE then 1 else -0.5 end) score
+    FROM    resources a
+            FULL JOIN votes b
+                ON a.resourceid = b.resourceid
+            WHERE a.categoryid = ${id}
+    GROUP   BY b.resourceid, a.link, a.resourceid
+      ORDER BY score DESC 
+      LIMIT 3;`;
+    client.query(queryString, (err, result) => {
+      if (err) return res.send(err);
+      // console.log(result.rows);
+      return res.send(result.rows);
+    });
+  },
     // for (let i = 0; i < 120; i += 1) {
     //   const text = 'INSERT INTO votes (resourceid, useremail, upvote) VALUES ($1, $2, $3)';
     //   const values = [(Math.floor(Math.random() * 44) + 44), faker.internet.email(), ((!!Math.floor(Math.random() * 2)))];
@@ -83,7 +106,7 @@ const dbController = {
     // }
 
     // client.end();
-  },
+  
 };
 
 module.exports = dbController;

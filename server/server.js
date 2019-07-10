@@ -10,6 +10,7 @@ const {
   fakeData,
   submitVote,
   submitResource,
+  getTopThree,
 } = require('./dbController.js');
 //const { getoAuthCode, getAccessToken, getAPI, jwtCookie} = require('./oAuthController');
 const pool = require('./database.js');
@@ -45,6 +46,9 @@ app.use(
 app.get('/api/category', getCategory);
 
 app.get('/api/resources/:id', getData);
+
+// FETCH TO THIS TO GET TOP THREE PER CATEGORY🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥 SIERRA LOOK HERE
+app.get('/api/topThree/:id', getTopThree);
 
 
 // create a route for the callbackURL
