@@ -1,7 +1,7 @@
-// // for local database
-// const { Client } = require('pg');
+// // // for local database
+// const { Pool } = require('pg');
 
-// module.exports = () => new Client({
+// const pool = new Pool({
 //   user: 'node_admin',
 //   host: 'localhost',
 //   database: 'goblin_shark',

@@ -1,5 +1,3 @@
-
-
 const faker = require('faker');
 const client = require('../database.js');
 
