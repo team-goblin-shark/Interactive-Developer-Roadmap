@@ -1,9 +1,10 @@
 import React, { Component, useState, useEffect } from 'react';
-//no parens needed around directory
+import '../styles.css'
+
 import Category from './Category';
 import AddResource from './AddResource';
-
 const App = () => {
+
   const [categories, setCategories] = useState([]);
   useEffect(() => {
     fetch('/api/category')
@@ -17,10 +18,6 @@ const App = () => {
   const categoryComponents = categories.map(category => {
     return <Category key={`catid_${category.categoryid}`} categoryName={category.category} id={category.categoryid} />
   })
-
-  // const categoryIDs = [];
-  // const categoryLabels = [];
-
 
   return (
     <div>
