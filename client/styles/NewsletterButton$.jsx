@@ -12,4 +12,4 @@ const NewsletterButton = styled.button`
     float: right;
 `
 
-export default NewsletterButton
+export default NewsletterButton;

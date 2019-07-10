@@ -1,5 +1,5 @@
 .gitignore
 node_modules
 
-package-lock.jsonsendgrid.env
+package-lock.json
 sendgrid.env
