@@ -3,7 +3,14 @@ import React, { Component, useState, useEffect } from 'react';
 //no parens needed around directory
 import Category from './Category';
 import AddResource from './AddResource';
-
+import Newsletter from './Newsletter';
+//--------------------------------------------------------------------------------------------------
+/*This App constant is using React Hooks 
+-Initializing state with first two constants
+-The point of conditional use of hasFetched in useEffect is to make sure the fetch only occurs once.
+-useEffect has the same functionality as componentDidMount
+*/
+//--------------------------------------------------------------------------------------------------
 const App = () => {
   const [categories, setCategories] = useState([]);
   const [hasFetched, changeFetch] = useState(false)
@@ -16,13 +23,25 @@ const App = () => {
         changeFetch(true)
     }
   });
+
+
+
+  
+  //--------------------------------------------------------------------------------------------------
+/*-This fetch request is fetching from an endpoint that exists in our server.js file
+  - That endpoint is a get request that runs a method called "getCategory" located in the db controller
+*/
+  //--------------------------------------------------------------------------------------------------
   //we will map over the categories array in the state object
   //we will create a react component for each element in the categories array
 
   const categoryComponents = categories.map(category => {
     return <Category key={`catid_${category.categoryid}`} categoryName={category.category} id={category.categoryid} />
   })
-
+//--------------------------------------------------------------------------------------------------
+/* we pull out keys (categoryid  and category) from each category in the array and pass them as props to each newly made Category component 
+*/ 
+//--------------------------------------------------------------------------------------------------
   // const categoryIDs = [];
   // const categoryLabels = [];
 
@@ -30,13 +49,15 @@ const App = () => {
   return (
     <div>
         <div id='navbar'>
-          <img id= 'logo' src='https://whatsthatanimal.files.wordpress.com/2014/03/goblin-shark.png' />
-          <h1>Goblin Sharks!!!</h1>
+      
+          <h1>Dev Resources</h1>
+          <Newsletter/>
           <a className='login' href='https://github.com/login/oauth/authorize?client_id=13defefbd00cf6ce9fbf&scope=user:email'>
             <i className="fa fa-github fa-3x"></i>
           </a>
         </div> 
         <div className='categoryParent'>
+        {/* //insert our array of Category components here */}
           {categoryComponents}
         </div>
         <div id='addResource'>
