@@ -14,7 +14,7 @@ export default class Resource extends Component {
 //--------------------------------------------------------------------------------------------------
   handleClick(e) {
 
-    if (e.target.innerText === '++') {
+    if (e.target.innerText === '👍👍') {
       this.setState({ upvoted: !this.state.upvoted, downvoted: false })
       const tempVal = !this.state.upvoted;
       let bool = tempVal ? tempVal : null;//when a user logs in they can only have one vote
@@ -26,7 +26,7 @@ export default class Resource extends Component {
         .then(data => console.log(data))
         .catch(error => error);
     }
-    if (e.target.innerText === '--') {
+    if (e.target.innerText === '👎👎') {
       this.setState({ downvoted: !this.state.downvoted, upvoted: false })
       const tempVal = !this.state.downvoted;
       let bool = tempVal ? !tempVal : null;
@@ -50,11 +50,11 @@ export default class Resource extends Component {
         <div className='resourceLinks'>{this.props.link}</div>
         <div className='mathing'>
           <div className='adding'>
-            <a className='things' href='#' onClick={this.handleClick} >++</a> 
+            <a className='things' href='#' onClick={this.handleClick} >👍👍</a> 
             {Number(this.props.sumupvote) + Number(this.state.upvoted)}
           </div>
           <div className='subtracting'>
-            <a className='things' href='#' onClick={this.handleClick} >--</a> 
+            <a className='things' href='#' onClick={this.handleClick} >👎👎</a> 
             {Number(this.props.sumdownvote) + Number(this.state.downvoted)}
           </div>
         </div>
