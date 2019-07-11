@@ -66,7 +66,7 @@ const dbController = {
     const email = req.body;
     console.log(email);
     client.query(text)
-  }
+  },
 
 
   fakeData: (req, res) => {
