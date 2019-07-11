@@ -15,15 +15,15 @@ const apiGetController = {
               WHERE a.categoryid = ${id}
       GROUP   BY b.resourceid, a.link, a.resourceid
         ORDER BY score DESC;`;
-    
+
     const client = clientMaker();
-    client.connect(err=>{
+    client.connect((err) => {
       // if(err) res.status(504).send('Internal error');
       client.query(queryString, (err, result) => {
         // if (err) return res.send(err);
         // console.log(result.rows);
         const results = result.rows;
-        console.log('getController => getData => client.query', results)
+        console.log('getController => getData => client.query', results);
         client.end();
         return res.status(200).send(results);
       });
@@ -32,10 +32,10 @@ const apiGetController = {
   getCategory: (req, res) => {
     const queryIdString = 'SELECT * FROM categories';
     const client = clientMaker();
-    client.connect(err=>{
-      if(err) return res.status(504).send(err);
+    client.connect((err) => {
+      if (err) return res.status(504).send(err);
       client.query(queryIdString, (err, result) => {
-        if(err) return res.status(504).send(err);
+        if (err) return res.status(504).send(err);
         const results = result.rows;
         client.end();
         return res.status(200).send(results);
