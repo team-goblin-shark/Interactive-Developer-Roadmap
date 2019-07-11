@@ -50,19 +50,19 @@ const App = () => {
     <div>
         <div id='navbar'>
       
-          <h1>Dev Resources</h1>
+          <h1>Resource Stack</h1>
           <Newsletter/>
           <a className='login' href='https://github.com/login/oauth/authorize?client_id=65531e05edf45df5b914&scope=user:email'>
             <i className="fa fa-github fa-3x"></i>
           </a>
         </div> 
-        <div className='categoryParent'>
-        {/* //insert our array of Category components here */}
-          {categoryComponents}
-        </div>
         <div id='addResource'>
           <h2>Submit Resources Here</h2>
           <AddResource categories={categories} />
+        </div>
+        <div className='categoryParent'>
+        {/* //insert our array of Category components here */}
+          {categoryComponents}
         </div>
       </div>
   )
