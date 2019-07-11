@@ -62,6 +62,12 @@ const dbController = {
     });
   },
 
+  submitEmail: (req, res) => {
+    const email = req.body;
+    console.log(email);
+    client.query(text)
+  }
+
 
   fakeData: (req, res) => {
     for (let i = 0; i < 45; i += 1) {

@@ -45,7 +45,6 @@ const App = () => {
   // const categoryIDs = [];
   // const categoryLabels = [];
 
-
   return (
     <div>
         <div id='navbar'>
