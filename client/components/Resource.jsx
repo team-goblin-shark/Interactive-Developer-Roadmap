@@ -38,6 +38,7 @@ export default class Resource extends Component {
         .then(data => console.log(data))
         .catch(error => error);
     }
+   
   }
 //--------------------------------------------------------------------------------------------------
 /*  MThe above method makes a request to this enpoint and  verifies user with oauth. This way Users can only submit votes once */ 
@@ -47,6 +48,7 @@ export default class Resource extends Component {
   render() {
     return (
       <div className='resourceDiv'>
+       <i className="far fa-star"></i>
         <div className='resourceLinks'>{this.props.link}</div>
         <div className='mathing'>
           <div className='adding'>

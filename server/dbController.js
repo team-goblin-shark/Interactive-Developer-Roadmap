@@ -30,7 +30,7 @@ const dbController = {
     });
   },
   getCategory: (req, res) => {
-    const queryIdString = 'SELECT * FROM categories';
+    const queryIdString = 'SELECT * FROM heelycategories';
     client.query(queryIdString, (err, result) => {
       if (err) return res.send(err);
       res.send(result.rows);

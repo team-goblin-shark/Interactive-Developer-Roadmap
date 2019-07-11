@@ -23,9 +23,6 @@ const App = () => {
         changeFetch(true)
     }
   });
-
-
-
   
   //--------------------------------------------------------------------------------------------------
 /*-This fetch request is fetching from an endpoint that exists in our server.js file
@@ -34,7 +31,6 @@ const App = () => {
   //--------------------------------------------------------------------------------------------------
   //we will map over the categories array in the state object
   //we will create a react component for each element in the categories array
-
   const categoryComponents = categories.map(category => {
     return <Category key={`catid_${category.categoryid}`} categoryName={category.category} id={category.categoryid} />
   })
@@ -44,21 +40,40 @@ const App = () => {
 //--------------------------------------------------------------------------------------------------
   // const categoryIDs = [];
   // const categoryLabels = [];
-
   return (
     <div>
+
+      {/* Nav bar content */}
         <div id='navbar'>
       
           <h1>Resource Stack</h1>
           <Newsletter/>
           <a className='login' href='https://github.com/login/oauth/authorize?client_id=65531e05edf45df5b914&scope=user:email'>
-            <i className="fa fa-github fa-3x"></i>
+          <i class="fab fa-github"></i>
+          </a>
+          <a className='favorite'>
+            Favorites
           </a>
         </div> 
+          {/* First page conetent */}
+
+
+
+        <section className= 'section2'></section>
+
+        <p className = "p1">Community driven resource hub for engineers</p>
+
+        <section className= 'section2'></section>
         <div id='addResource'>
           <h2>Submit Resources Here</h2>
+
           <AddResource categories={categories} />
         </div>
+
+        <section className= 'section3'></section>
+
+        <p className = 'p2'>Discover resources</p>
+     
         <div className='categoryParent'>
         {/* //insert our array of Category components here */}
           {categoryComponents}
@@ -68,11 +83,9 @@ const App = () => {
 };
   
 export default App;
-
   // export default class App extends Component {
   //   constructor(props){
   //     super(props),
-
   //     this.state = {categories: []}
   //   }
   //use componentDidMount life cycle method
@@ -83,16 +96,12 @@ export default App;
 //       .then(response => response.json())
 //       .then(data => this.setState({categories: data}))
 //       .catch(err => console.log(err))
-
 //   }
-
-
 //   render() {
 //     //we will map over the categories array in the state object
 //     //we will create a react component for each element in the categories array
 //     const {categories} = this.state;
 //     const categoryComponents = categories.map(category => {
-
 //       return <Category key={`catid_${category.categoryid}`} categoryName={category.category} id={category.categoryid}/>
 //     })
 //     return (
@@ -103,4 +112,3 @@ export default App;
 //     )
 //   }
 // }
-

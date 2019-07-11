@@ -17,6 +17,6 @@ const NewsletterButton = styled.button`
     transition: all 0.3s ease 0s;
     cursor: pointer;
     outline: none;
-`
+`;
 
 export default NewsletterButton;
