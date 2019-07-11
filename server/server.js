@@ -5,14 +5,11 @@ const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const apiRouter = require('./routers/apiRouter.js');
 
-// const { getData, getCategory, fakeData } = require('./dbController.js');
-
 const app = express();
 const port = 3000;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
 
 app.use(cookieParser());
 
