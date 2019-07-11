@@ -13,9 +13,14 @@ import NewsletterButton from '../styles/NewsletterButton$.jsx';
 
 const Newsletter = () => {
     return (
-        <form>
-            <input type='text' placeholder='Email' name='mail' required></input>
-        </form>
+        <div>
+            
+            <form>
+                <input type='text' placeholder='Email' name='mail' required></input>
+                <NewsletterButton id='subscribe'> Submit </NewsletterButton>
+            </form>
+        </div>
+        
     )
 }
 
