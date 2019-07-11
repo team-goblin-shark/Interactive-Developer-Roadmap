@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import NewsletterButton from '../styles/NewsletterButton$.jsx';
 import useCallback from 'react';
 
@@ -12,16 +12,22 @@ import useCallback from 'react';
         // else
             // alert user that email is already receiving newsletters
 
-const Newsletter = () => {
-    const handleClick = () => {
-        fetch(`/api/resources/${props.email}`)
+const Newsletter = (props) => {
+    const [email, setEmail] = useState('');
+    // const [input, setInput] = useState('');
+    const handleClick = (event) => {
+        event.preventDefault()
+        setEmail(event.target.value);
+        fetch(`/api/newsEmail/${email}`)
             .then(response => response.json())
-            // .then(data => )
+            .then(data => console.log(data))
+            console.log('sierra clicked this')
     };
     return (
         <form>
-            <input type='text' placeholder='Email' name='mail' required></input>
+            <input type='text' placeholder='Email' name='mail' required onChange={event => setEmail(event.target.value)}></input>
             <NewsletterButton onClick={handleClick}>Sign Up</NewsletterButton>
+            {/* <h1>{email}</h1> */}
             {/* <NewsletterButton>Sign Up</NewsletterButton> */}
         </form>
     )
