@@ -55,13 +55,13 @@ const App = () => {
             <i className="fa fa-github fa-3x"></i>
           </a>
         </div> 
-        <div className='categoryParent'>
-        {/* //insert our array of Category components here */}
-          {categoryComponents}
-        </div>
         <div id='addResource'>
           <h2>Submit Resources Here</h2>
           <AddResource categories={categories} />
+        </div>
+        <div className='categoryParent'>
+        {/* //insert our array of Category components here */}
+          {categoryComponents}
         </div>
       </div>
   )
