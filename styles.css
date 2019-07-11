@@ -1,6 +1,10 @@
-html{
+body{
   display: flex;
   padding: 20px;
+  background-image: url("/backgroundimage3.jpg");
+  background-size: 1500px 900px;
+  background-repeat: no-repeat;
+  overflow: hidden;
 }
 
 *{
@@ -12,14 +16,32 @@ html{
   justify-content:space-between;
   align-content:center;
   align-items:center;
-  padding-inline-end:40px;
+  /* padding-inline-end:40px; */
 }
 
 h1{
+  color: rgb(19, 34, 46);
   text-align:left;
   font-size:50px;
   display:inline;
-  animation:fadein 7s;
+  animation:fadein 3s;
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+}
+h2{
+  color: rgb(19, 34, 46);
+  text-align:left;
+  font-size:50px;
+  display:inline;
+  animation:fadein 3s;
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  display: flex;
+  align-content: left;
 }
 
 
@@ -29,7 +51,7 @@ h1{
 
 .login, .login:link, .login:visited{
   display:flex;
-  justify-items:space-between;
+  justify-items:right;
   border:solid 1px black;
   font-size:18px;
   padding:10px 20px;
@@ -43,28 +65,32 @@ h1{
 }
 .categoryParent{
   margin-top:100px;
-  width: 1340px;
+  width: 1000px;
   flex-direction:row;
-  border-style: solid;
+  /* border-style: solid; */
   /* flex-flow:column wrap; */
+  height: 400px;
+  overflow-y:scroll;
+  background-color: rgb(199,203,204,.40);
 }
 
 .categoryDiv{
-  border-style: solid;
+  /* border-style: solid; */
   height:300px;
   /* display:flex; */
   flex: 1 1 300px;
   flex-direction:column;
   align-items: left;
-  margin: 50px;
+ 
 }
 .resourcesList{
   padding: 50px;
   margin: 20px;
   font-size:20px;
-  height:100px;
-  width: 1200px;
+  height:70px;
+  width: 700px;
   overflow-y:scroll;
+  border-style: solid;
   /* justify-content: left; */
   
 }
@@ -75,8 +101,8 @@ h1{
   /* display: flex; */
   /* justify-content: left; */
   flex-wrap:nowrap;
-  width: 1100px;
-  padding: 10px;
+  width: 700px;
+
 
 }
 .resourceLink{
@@ -95,10 +121,12 @@ h1{
 
 #addResource{
   text-align:center;
+  height: 20px;
 }
+
 #selecting,#submitBtn,input{
-  width: 140px;
-  height: 45px;
+  width: 240px;
+  height: 25px;
 }
 #selecting, #submitBtn{
   font-family: 'Roboto', sans-serif;
@@ -114,7 +142,7 @@ h1{
   cursor: pointer;
   outline: none;
 }
-.cat1,.cat2,.cat3,.cat4,.cat5,.cat6 {
+.cat1,.cat2,.cat3,.cat4,.cat5,.cat6, #subscribe {
   margin-top: 10px;
   float: left;
   width: 140px;
@@ -168,6 +196,9 @@ h1{
   from { opacity: 0; }
   to   { opacity: 1; }
 }
+
+
+
 /* @keyframes bouncy{
    0%{top:0em}
    40%{top:0em}

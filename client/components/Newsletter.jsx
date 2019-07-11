@@ -16,7 +16,7 @@ const Newsletter = () => {
     const handleClick = () => {
         fetch(`/api/resources/${props.email}`)
             .then(response => response.json())
-            .then(data => )
+            // .then(data => )
     };
     return (
         <form>
