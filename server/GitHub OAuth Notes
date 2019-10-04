@@ -1,0 +1,10 @@
+How can we go about implementing OAuth?
+We need to create a route for GitHub OAuth server to obtain authorization
+Create button element to emulate click for OAuth
+
+Create a middleware controller for OAuth
+We will need to send a post request to the access token url
+    It will need to include the authorization code and the client secret and client include
+
+What are we doing today?
+    Figure out if express-session middleware automatically creates a cookie for us

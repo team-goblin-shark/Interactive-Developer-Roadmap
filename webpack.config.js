@@ -29,6 +29,7 @@ module.exports = env => ({
     extensions: ['.js', '.jsx'],
   },
   devServer: {
+    historyApiFallback: true,
     publicPath: path.resolve(__dirname, '/dist/'),
     compress: true,
     port: 8080,

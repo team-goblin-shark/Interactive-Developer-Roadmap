@@ -21,11 +21,22 @@
   "homepage": "https://github.com/team-goblin-shark/scratch#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.4",
     "express": "^4.17.1",
+    "express-session": "^1.16.2",
     "faker": "^4.1.0",
+    "googleapis": "^40.0.1",
+    "jsonwebtoken": "^8.5.1",
+    "nodemon": "^1.19.1",
     "pg": "^7.11.0",
+    "qs-stringify": "^1.1.0",
+    "querystring": "^0.2.0",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "react-router-dom": "^5.0.1",
+    "react-toastify": "^5.3.1",
+    "request": "^2.88.0",
+    "styled-components": "^4.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.5.0",
@@ -36,6 +47,7 @@
     "eslint": "^6.0.1",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-plugin-import": "^2.18.0",
+    "node-sass": "^4.12.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "webpack": "^4.35.2",
