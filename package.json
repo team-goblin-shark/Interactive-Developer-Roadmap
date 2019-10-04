@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/team-goblin-shark/scratch.git"
+    "url": "git+https://github.com/team-goblin-shark/Interactive-Developer-Roadmap.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/team-goblin-shark/scratch/issues"
+    "url": "https://github.com/team-goblin-shark/Interactive-Developer-Roadmap/issues"
   },
-  "homepage": "https://github.com/team-goblin-shark/scratch#readme",
+  "homepage": "https://github.com/team-goblin-shark/Interactive-Developer-Roadmap#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.4",
