@@ -5,10 +5,16 @@ import AddResource from './AddResource';
 
 const App = () => {
   const [categories, setCategories] = useState([]);
+  const [isLoggedIn, setLogin] = useState(false);
+  
   useEffect(() => {
     fetch('/api/category')
       .then(response => response.json())
       .then(data => setCategories(data))
+      .catch(err => console.log(err))
+    fetch('/api/checkToken')
+      .then(response => response.json())
+      .then(data => console.log(data))
       .catch(err => console.log(err))
   });
   //we will map over the categories array in the state object
@@ -20,7 +26,12 @@ const App = () => {
 
   // const categoryIDs = [];
   // const categoryLabels = [];
-
+  const submitResource = (
+    <div id='addResource'>
+      <h2>Submit Resources Here</h2>
+      <AddResource categories={categories} />
+    </div>
+  );
 
   return (
     <div>
@@ -34,10 +45,7 @@ const App = () => {
         <div className='categoryParent'>
           {categoryComponents}
         </div>
-        <div id='addResource'>
-          <h2>Submit Resources Here</h2>
-          <AddResource categories={categories} />
-        </div>
+        {isLoggedIn ?  submitResource : ''}
       </div>
   )
 };
